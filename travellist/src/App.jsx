@@ -18,9 +18,10 @@ function Logo(){
 }
 function Form(){
   return(
-    <di className="add-form">
+    <div className="add-form">
       <h3>What do you need for your 😍 Trip?</h3>
-    </di>
+      <input type="text" />
+    </div>
   )
 
 }
