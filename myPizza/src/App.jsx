@@ -63,18 +63,40 @@ function Header() {
 
 function Menu(){
   const pizzas = pizzaData;
+  const numPizza = pizzas.length;
   return (
     <main className="menu">
       <h2>Our Menu</h2>
+      {
+        numPizza > 0 ?(
+          <>
+        
+      
       <p>
         Authentic Italian cuisine.6 Creative dishes to choose from our stone
         oven, all organic, all delicious.
       </p>
+      <ul className="pizzas">
+        {pizzas.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.name} />
+        ))}
+      </ul>
+      </>):(
+        "We are still working on our Menu. Please come back later."
+      )}
     </main>
   );
 }
 
+function Pizza(props){
+  
 
+  return(
+    <li>
+
+    </li>
+  )
+}
 
 
 
