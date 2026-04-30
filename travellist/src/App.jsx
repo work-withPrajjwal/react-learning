@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const initialItems = [
-  { id: 1, description: "Passports", quantity: 2, packed: false },
+  { id: 1, description: "Passports", quantity: 2, packed: true },
   { id: 2, description: "Socks", quantity: 12, packed: false },
 ];
 
@@ -22,12 +22,13 @@ function Logo() {
 function Form() {
   const[description, setDescription] = useState("");
   const[quantity, setQuantity] = useState(1);
+
   function handleAdd(e){
     e.preventDefault();
     
   }
   return (
-    <form className="add-form">
+    <form className="add-form" onSubmit={handleAdd}>
       <h3>What do you need for your Trip 😍 ?</h3>
       <select value={quantity} onChange={(e)=> setQuantity(e.target.value)}>
         {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
@@ -56,12 +57,19 @@ function PackingList() {
     </ul>
   );
 }
+
 function Item({item}){
+  const[isPacked, setIsPacked] = useState(item.packed);
+  
+  function handleToggle(){
+setIsPacked((currPacked)=>!currPacked);
+item.packed = !item.packed;
+  }
   return(
     <li className="item">
-      <input type ="checkbox" />
-      <span>
-        {item.description} {item.quantity}
+      <input type ="checkbox" checked={isPacked} onChange={handleToggle}/>
+      <span style={item.packed?{textDecoration:"line-through"}:{}}>
+       {item.quantity} {item.description} 
       </span>
       <button>❌</button>
     </li>
