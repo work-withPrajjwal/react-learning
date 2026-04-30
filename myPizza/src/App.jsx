@@ -69,9 +69,7 @@ function Menu(){
       <h2>Our Menu</h2>
       {
         numPizza > 0 ?(
-          <>
-        
-      
+          <> 
       <p>
         Authentic Italian cuisine.6 Creative dishes to choose from our stone
         oven, all organic, all delicious.
@@ -89,12 +87,16 @@ function Menu(){
 }
 
 function Pizza(props){
-  
-
+  const{ name, ingredients, price, photoName, soldOut} = props.pizzaObj
   return(
+    <div className={`pizza ${soldOut? 'sold-out':""}`}>
+<img src={photoName} alt={name} />
     <li>
-
+    <h3>{name}</h3>
+    <p>{ingredients}</p>
+    <span> {soldOut? "Sold Out": price}</span>
     </li>
+    </div>
   )
 }
 
