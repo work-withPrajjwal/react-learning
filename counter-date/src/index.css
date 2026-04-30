@@ -19,3 +19,30 @@ code {
   margin-top: 3rem;
 
 }
+.range{
+  accent-color: rgb(64, 72, 181);
+  cursor: pointer;
+}
+.reset{
+  background-color: gray;
+  color: red;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.sub{
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.add{
+    color: white;
+  background-color: green;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+}
