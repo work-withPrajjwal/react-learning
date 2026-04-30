@@ -100,6 +100,25 @@ function Pizza(props){
   )
 }
 
+function Footer(){
+  const hour = new Date().getHours();
+  const openHour = 8;
+  const closeHour = 17;
+  const isOpen = hour >= openHourpenHour && hour <=closeHour;
+  return(
+<div className="order">
+  { 
+    isOpen?(
+      <Order OpenHour={openHour} closeHour={closeHour}/>
+    ):(
+      <p>
+        we are Happy to welcome you between{openHour}:00 to {closeHour}:00
+      </p>
+    )
+}
+</div>
+  )
+}
 
 
 export default App;
