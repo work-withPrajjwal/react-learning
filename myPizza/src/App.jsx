@@ -50,6 +50,7 @@ function App() {
     <>
       <Header />
      <Menu/>
+     <Footer/>
     </>
   );
 }
@@ -71,7 +72,7 @@ function Menu(){
         numPizza > 0 ?(
           <> 
       <p>
-        Authentic Italian cuisine.6 Creative dishes to choose from our stone
+        Authentic Italian cuisine. {numPizza} Creative dishes to choose from our stone
         oven, all organic, all delicious.
       </p>
       <ul className="pizzas">
@@ -88,37 +89,45 @@ function Menu(){
 
 function Pizza(props){
   const{ name, ingredients, price, photoName, soldOut} = props.pizzaObj
-  return(
-    <div className={`pizza ${soldOut? 'sold-out':""}`}>
-<img src={photoName} alt={name} />
-    <li>
-    <h3>{name}</h3>
-    <p>{ingredients}</p>
-    <span> {soldOut? "Sold Out": price}</span>
+  return (
+    <li className={`pizza ${soldOut ? "sold-out" : ""}`}>
+      <img src={photoName} alt={name} />
+      <h3>{name}</h3>
+      <p>{ingredients}</p>
+      <span>{soldOut ? "Sold Out" : price}</span>
     </li>
-    </div>
-  )
+  );
 }
 
 function Footer(){
   const hour = new Date().getHours();
   const openHour = 8;
   const closeHour = 17;
-  const isOpen = hour >= openHourpenHour && hour <=closeHour;
-  return(
-<div className="order">
-  { 
-    isOpen?(
-      <Order OpenHour={openHour} closeHour={closeHour}/>
-    ):(
-      <p>
-        we are Happy to welcome you between{openHour}:00 to {closeHour}:00
-      </p>
-    )
-}
-</div>
-  )
+  const isOpen = hour >= openHour && hour <=closeHour;
+  return (
+    <footer className="order">
+      {isOpen ? (
+        <Order openHour={openHour} closeHour={closeHour} />
+      ) : (
+        <p>
+          We are open and happy to welcome you between {openHour}:00 to{" "}
+          {closeHour}:00
+        </p>
+      )}
+    </footer>
+  );
 }
 
+function Order({openHour, closeHour}){
+  return(
+    <>
+    <p>
+      We are open from {openHour}:00 to {closeHour}:00. Come Visit us or order!
+    </p>
+    <button className="btn">Order Now</button>
+    </>
+  )
+
+}
 
 export default App;
