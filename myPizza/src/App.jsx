@@ -45,29 +45,34 @@ const pizzaData = [
   },
 ];
 
-
 function App() {
-  
-
   return (
-  <>
-  <Header />
-  </>
+    <>
+      <Header />
+     <Menu/>
+    </>
   );
 }
- function Header(){
+function Header() {
   return (
-<div className="header">
-    <h1>Fast React Pizza Co.</h1>;
-</div>
-  )
- }
+    <div className="header">
+      <h1>Fast React Pizza Co.</h1>
+    </div>
+  );
+}
 
-
-
-
-
-
+function Menu(){
+  const pizzas = pizzaData;
+  return (
+    <main className="menu">
+      <h2>Our Menu</h2>
+      <p>
+        Authentic Italian cuisine.6 Creative dishes to choose from our stone
+        oven, all organic, all delicious.
+      </p>
+    </main>
+  );
+}
 
 
 
