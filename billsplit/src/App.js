@@ -27,7 +27,7 @@ function Review(){
     if (friendService === "goodFriend") friendMoney = 0.1 * Number(bill);
     if (friendService === "amazingFriend") friendMoney = 0.2 * Number(bill);
 
-
+ 
 
   function handleBill(e){
     setBill(e.target.value)
@@ -56,7 +56,10 @@ function Review(){
 
       <div>
         <label>How did your friend like the service?</label>
-        <select value={friendService} onChange={(e) => setFriendService(e.target.value)}>
+        <select
+          value={friendService}
+          onChange={(e) => setFriendService(e.target.value)}
+        >
           <option value="disatisfiedFriend">Dissatisfied(0%)</option>
           <option value="okayFriend">It was okay(5%)</option>
           <option value="goodFriend">It was good(10%)</option>
@@ -65,7 +68,9 @@ function Review(){
       </div>
 
       <div>
-        <h1>{`You pay Rs.${bill}(Rs.${bill}+ Rs.${serviceMoney}+ Rs.${friendMoney}) =  Rs.${total}`}</h1>
+        {bill && (
+          <h1>{`You pay €${bill}(€${bill}+ €${serviceMoney}+ €${friendMoney}) =  €${total}`}</h1>
+        )}
         <button onClick={resetBill}>Reset</button>
       </div>
     </div>
