@@ -16,6 +16,7 @@ const data=[
 
 function App() {
   const[message, setMessage]= useState(1);
+  const[isOpen, setIsOpen]= useState(true)
   
   function handlePreviousMessage(){
     if(message>1) setMessage((currMessage)=> currMessage-1)
@@ -32,7 +33,7 @@ function App() {
         <p>-{data[message -1].name}</p>
       </div>
       <div className="buttons">
-      <button onClick={handlePreviousMessage}>Prev</button>
+      <button onClick={handlePreviousMessage} >Prev</button>
       <button onClick={handleNextMessage}>Next</button>
       </div>
     </div>
