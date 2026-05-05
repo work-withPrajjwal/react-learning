@@ -32,9 +32,14 @@ code {
   gap:3rem;
 }
 
-active{
-
+.active{
+ background-color: rgb(3, 90, 61);
+ color: white;
 }
-.button{
+button{
   background-color: rgb(60, 141, 114);
+  border: rgb(60, 141, 114) ;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  color: white;
 }
