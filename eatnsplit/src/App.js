@@ -34,7 +34,7 @@ function App() {
     setShowAddFriend(false);
   }
   function handleSelectFriend(friend){
-    console.log(friend)
+    setSelectedFriend((curr)=>(curr?.id===friend.id? null:friend))
   }
 
   return (
