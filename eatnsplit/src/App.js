@@ -123,12 +123,12 @@ function Button({ children, onClick }) {
 function FormSplitBill({selectedFriend}) {
   return (
     <form className="form-split-bill">
-      <h2>SPLIT A BILL WITH X</h2>
+      <h2>SPLIT A BILL WITH {selectedFriend.name}</h2>
       <label>💰Bill Value</label>
       <input type="text" />
       <label>🧔Your Expense</label>
       <input type="text" />
-      <label>🙍‍♀️X's Expense</label>
+      <label>🙍‍♀️{selectedFriend.name}'s Expense</label>
       <input type="text" disabled />
       <label>🤑Who is paying the bill</label>
       <select>
