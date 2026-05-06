@@ -40,7 +40,7 @@ function App() {
   return (
     <div className="app">
       <div className="sidebar">
-        <FriendList friends={friends} onSelectFriend={handleSelectFriend} />
+        <FriendList friends={friends} onSelectFriend={handleSelectFriend} selectedFriend={selectedFriend}/>
         {showAddFriend && <FormAddFriend onAddFriend={handleAddFriend} />}
         <Button onClick={handleShowAddFriend}>
           {showAddFriend ? "close" : "AddFriend"}
@@ -51,19 +51,21 @@ function App() {
   );
 }
 
-function FriendList({friends, onSelectFriend}) {
+function FriendList({friends, onSelectFriend, selectedFriend}) {
   return (
     <ul>
       {friends.map((friend) => (
-        <Friend friend={friend} key={friend.id} onSelectFriend={onSelectFriend}/>
+        <Friend friend={friend} key={friend.id} onSelectFriend={onSelectFriend} selectedFriend={selectedFriend}/>
       ))}
     </ul>
   );
 }
 
-function Friend({ friend, onSelectFriend }) {
+function Friend({ friend, onSelectFriend, selectedFriend}) {
+
+  const isSelected=  selectedFriend?.id === friend.id;
   return (
-    <li>
+    <li className={isSelected? 'selected': ''}>
       <img src={friend.image} alt={friend.name} />
       <h3>{friend.name}</h3>
       {friend.balance < 0 && (
@@ -81,7 +83,7 @@ function Friend({ friend, onSelectFriend }) {
       {friend.balance === 0 && (
         <p className="black">You and {friend.name} are even</p>
       )}
-      <Button onClick={()=> onSelectFriend(friend)}>Select</Button>
+      <Button onClick={()=> onSelectFriend(friend)}>{isSelected? "Close": "Select"}</Button>
     </li>
   );
 }
@@ -121,13 +123,15 @@ function Button({ children, onClick }) {
 }
 
 function FormSplitBill({selectedFriend}) {
+  const[bill, setBill] = useState("")
+  const[paidByUser, setPaidByUser] = useState("") 
   return (
     <form className="form-split-bill">
       <h2>SPLIT A BILL WITH {selectedFriend.name}</h2>
       <label>💰Bill Value</label>
-      <input type="text" />
+      <input type="text" value={bill} onChange={(e)=> setBill(Number(e.target.value))} />
       <label>🧔Your Expense</label>
-      <input type="text" />
+      <input type="text"  value={paidByUser} onChange={(e)=>setPaidByUser(Number(e.target.value))}/>
       <label>🙍‍♀️{selectedFriend.name}'s Expense</label>
       <input type="text" disabled />
       <label>🤑Who is paying the bill</label>
