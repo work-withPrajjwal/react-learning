@@ -46,7 +46,7 @@ function App() {
           {showAddFriend ? "close" : "AddFriend"}
         </Button>
       </div>
-      {selectedFriend &&<FormSplitBill />}
+      {selectedFriend &&<FormSplitBill  selectedFriend={selectedFriend}/>}
     </div>
   );
 }
@@ -120,7 +120,7 @@ function Button({ children, onClick }) {
   );
 }
 
-function FormSplitBill() {
+function FormSplitBill({selectedFriend}) {
   return (
     <form className="form-split-bill">
       <h2>SPLIT A BILL WITH X</h2>
