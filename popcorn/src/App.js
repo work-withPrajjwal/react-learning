@@ -206,7 +206,15 @@ function WatchedMovieList({watched}){
   return (
     <ul className="list">
       {watched.map((movie) => (
-        <li key={movie.imdbID}>
+        <WatchMovie movie={movie} key={movie.imdbID}/>
+      ))}
+    </ul>
+  );
+}
+
+function WatchMovie({movie}){
+  return(
+      <li >
           <img src={movie.Poster} alt={`${movie.Title} poster`} />
           <h3>{movie.Title}</h3>
           <div>
@@ -224,9 +232,5 @@ function WatchedMovieList({watched}){
             </p>
           </div>
         </li>
-      ))}
-    </ul>
-  );
+  )
 }
-
-
