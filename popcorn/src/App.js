@@ -50,8 +50,33 @@ const tempWatchedData = [
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
+function NavBar(){
+   
+  return(<nav className="nav-bar">
+    <div className="logo">
+      <span role="img">🍿</span>
+      <h1>usePopcorn</h1>
+    </div>
+    
+    <p className="num-results">
+      Found <strong>X</strong> results
+    </p>
+  </nav>
+  );
+}
+
+function Search(){
+const [query, setQuery] = useState("");
+  <input
+    className="search"
+    type="text"
+    placeholder="Search movies..."
+    value={query}
+    onChange={(e) => setQuery(e.target.value)}
+  />;
+}
 export default function App() {
-  const [query, setQuery] = useState("");
+ 
   const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
   const [isOpen1, setIsOpen1] = useState(true);
@@ -63,23 +88,7 @@ export default function App() {
 
   return (
     <>
-      <nav className="nav-bar">
-        <div className="logo">
-          <span role="img">🍿</span>
-          <h1>usePopcorn</h1>
-        </div>
-        <input
-          className="search"
-          type="text"
-          placeholder="Search movies..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <p className="num-results">
-          Found <strong>{movies.length}</strong> results
-        </p>
-      </nav>
-
+    <NavBar />
       <main className="main">
         <div className="box">
           <button
