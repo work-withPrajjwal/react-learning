@@ -51,7 +51,9 @@ export default function App() {
 const [movies, setMovies] = useState(tempMovieData);
   return (
     <>
-      <NavBar movies={movies} />
+      <NavBar> 
+        <NumResult movies={movies}/>
+         </NavBar>
       <Main movies = {movies} />
     </>
   );
@@ -60,12 +62,12 @@ const [movies, setMovies] = useState(tempMovieData);
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
-function NavBar({movies}) {
+function NavBar({children}) {
   return (
     <nav className="nav-bar">
       <Logo />
       <Search />
-      <NumResult movies={movies} />
+      {children}
     </nav>
   );
 }
