@@ -47,6 +47,15 @@ const tempWatchedData = [
   },
 ];
 
+export default function App() {
+  return (
+    <>
+      <NavBar />
+      <Main />
+    </>
+  );
+}
+
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
@@ -135,7 +144,15 @@ function MovieList(){
   return(
      <ul className="list">
           {movies?.map((movie) => (
-            <li key={movie.imdbID}>
+          <Movie movie={movie} key={movie.imdbID}/>
+          ))}
+        </ul>
+    
+  )
+}
+function Movie({movie}){
+  return(
+  <li key={movie.imdbID}>
               <img src={movie.Poster} alt={`${movie.Title} poster`} />
               <h3>{movie.Title}</h3>
               <div>
@@ -145,12 +162,8 @@ function MovieList(){
                 </p>
               </div>
             </li>
-          ))}
-        </ul>
-    
   )
 }
-
 function Main(){
   return (
     <main className="main">
@@ -216,14 +229,4 @@ function WatchedMovieList({watched}){
   );
 }
 
-export default function App() {
-
-
-  return (
-    <>
-    <NavBar />
-    <Main/>
-    </>
-  );
-}
 
