@@ -185,16 +185,22 @@ function WatchBox(){
   );
 }
 
+function Main(){
+  return (
+    <main className="main">
+      <ListBox />
+      <WatchBox />
+    </main>
+  );
+}
+
 export default function App() {
 
 
   return (
     <>
     <NavBar />
-      <main className="main">
-         <ListBox/>
-         <WatchBox/> 
-      </main>
+    <Main/>
     </>
   );
 }
