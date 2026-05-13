@@ -192,7 +192,8 @@ export default function App() {
     <>
     <NavBar />
       <main className="main">
-          
+         <ListBox/>
+         <WatchBox/> 
       </main>
     </>
   );
