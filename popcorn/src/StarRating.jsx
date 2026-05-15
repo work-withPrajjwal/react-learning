@@ -11,19 +11,27 @@ const starContainerStyle = {
   gap: "4px",
 };
 
-function StarRating({ maxRating = 5, color="#fcc419", size=48, messages=[]}) {
-  const [rating, setRating] = useState(0);
+function StarRating({
+  maxRating = 5,
+  color = "#fcc419",
+  size = 48,
+  messages = [],
+  onSetMovieRating,
+  defaultRating=0
+}) {
+  const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
 
   function handleRating(rating) {
     setRating(rating);
+    onSetMovieRating(rating);
   }
 
   const textStyle = {
     lineHeight: "1",
     margin: "0.5rem",
     color,
-    fontSize:`${size/1.5}px`
+    fontSize: `${size / 1.5}px`,
   };
 
   return (
@@ -31,20 +39,23 @@ function StarRating({ maxRating = 5, color="#fcc419", size=48, messages=[]}) {
       <div style={starContainerStyle}>
         {Array.from({ length: maxRating }, (_, i) => (
           <span>
-            <Star onRate={() => handleRating(i + 1)} 
-            onHoverIn={()=>setTempRating(i+1)}
-              onHoverOut={()=>setTempRating()}
-            
-            full={ tempRating? tempRating >= i+1: rating >= i + 1}  
- color={color}
- size={size}
-              
-              />
+            <Star
+              onRate={() => handleRating(i + 1)}
+              onHoverIn={() => setTempRating(i + 1)}
+              onHoverOut={() => setTempRating()}
+              full={tempRating ? tempRating >= i + 1 : rating >= i + 1}
+              color={color}
+              size={size}
+            />
           </span>
         ))}
       </div>
 
-      <p style={textStyle}>{messages.length===maxRating ? messages[tempRating? tempRating-1 : rating-1]: tempRating? tempRating : rating}</p>
+      <p style={textStyle}>
+        {messages.length === maxRating
+          ? messages[tempRating ? tempRating - 1 : rating - 1]
+          : tempRating || rating}
+      </p>
     </div>
   );
 }
