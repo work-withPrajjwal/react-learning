@@ -39,14 +39,15 @@ function StarRating({ maxRating = 5 }) {
             onHoverIn={()=>setTempRating(i+1)}
               onHoverOut={()=>setTempRating()}
             
-            full={rating >= i + 1}  
+            full={ tempRating? tempRating >= i+1: rating >= i + 1}  
+
               
               />
           </span>
         ))}
       </div>
 
-      <p style={textStyle}>{rating}</p>
+      <p style={textStyle}>{tempRating? tempRating:rating}</p>
     </div>
   );
 }
