@@ -37,12 +37,12 @@ export default function App() {
 
 function TextExpander({
   children,
-  collapsedNumWords,
-  expandButtonText,
-  collapseButtonText,
-  buttonColor, expanded, className
+  collapsedNumWords=10,
+  expandButtonText = 'SHow More',
+  collapseButtonText='SHow Less',
+  buttonColor='blue', expanded='false', className=''
 }) {
   return(
-    
+
   )
 }
