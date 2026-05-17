@@ -42,7 +42,14 @@ function TextExpander({
   collapseButtonText='SHow Less',
   buttonColor='blue', expanded='false', className=''
 }) {
+  const[isExpanded, setIsExpanded]= useState(expanded);
+  function handleClick(){
+    setIsExpanded((isExpanded)=> !isExpanded);
+  }
   return(
-
+<div className={className}>
+  <span>{children}</span>
+  <button onClick={handleClick}>{expandButtonText}</button>
+</div>
   )
 }
