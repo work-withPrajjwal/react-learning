@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./styles.css";
 
 export default function App() {
@@ -34,6 +35,14 @@ export default function App() {
   );
 }
 
-function TextExpander({children}) {
-  return <div>{children}</div>;
+function TextExpander({
+  children,
+  collapsedNumWords,
+  expandButtonText,
+  collapseButtonText,
+  buttonColor, expanded, className
+}) {
+  return(
+    
+  )
 }
