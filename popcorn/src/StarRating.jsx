@@ -1,4 +1,5 @@
 import { useState } from "react";
+import propTypes from "prop-types";
 
 
 const containerStyle = {
@@ -11,20 +12,31 @@ const starContainerStyle = {
   gap: "4px",
 };
 
+StarRating.propTypes = {
+  maxRating: propTypes.number,
+  color: propTypes.string,
+  defaultRating: propTypes.number,
+  size: propTypes.number,
+  messages: propTypes.array,
+  onSetMovieRating: propTypes.func,
+  className: propTypes.string,
+};
+
 function StarRating({
   maxRating = 5,
   color = "#fcc419",
   size = 48,
   messages = [],
   onSetMovieRating,
-  defaultRating=0
+  defaultRating=0,
+  className=''
 }) {
   const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
 
   function handleRating(rating) {
     setRating(rating);
-    onSetMovieRating(rating);
+    // onSetMovieRating(rating);
   }
 
   const textStyle = {
@@ -35,7 +47,7 @@ function StarRating({
   };
 
   return (
-    <div style={containerStyle}>
+    <div style={containerStyle} className={className}>
       <div style={starContainerStyle}>
         {Array.from({ length: maxRating }, (_, i) => (
           <span>
@@ -46,6 +58,7 @@ function StarRating({
               full={tempRating ? tempRating >= i + 1 : rating >= i + 1}
               color={color}
               size={size}
+              key={(i)}
             />
           </span>
         ))}
