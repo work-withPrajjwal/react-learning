@@ -9,6 +9,7 @@ export default function App() {
 const [movies, setMovies] = useState(tempMovieData);
 const [watched, setWatched] = useState(tempWatchedData);
 const[isLoading, setIsLoading] = useState(false);
+const [error, setError] = useState("");
 
 useEffect(function (){
 async function fetchMovies(){
@@ -22,7 +23,7 @@ try{
  setIsLoading(false); 
 }
 catch(err){
-  console.log(err)
+  setError(err.message)
 }
 }
 fetchMovies();
@@ -37,7 +38,10 @@ return (
       </NavBar>
       <Main>
         <Box>
-          {isLoading?<Loader/>: <MovieList movies={movies} />}
+          {/* {isLoading?<Loader/>: <MovieList movies={movies} />} */}
+          {isLoading && <LoaderMessage/>}
+          {!isLoading && !error && <MovieList movies={movies}/>}
+          {error && <ErrorMessage/>}
         </Box>
         <Box>
           <WatchedSummary watched={watched}/>
@@ -48,7 +52,10 @@ return (
   );
 }
 
-function Loader() {
+function ErrorMessage({message}){
+  return <p className="error"><span>{message}</span></p>
+}
+function LoaderMessage() {
   return <p className="loader">Loading.....</p>;
 }
 
