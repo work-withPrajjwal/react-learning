@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import propTypes from "prop-types";
 
 const tempMovieData = [];
@@ -9,9 +9,13 @@ export default function App() {
 const [movies, setMovies] = useState(tempMovieData);
 const [watched, setWatched] = useState(tempWatchedData);
 
+useEffect(function (){
 fetch(`http://www.omdbapi.com/?apikey=${KEY}&s="inception"`)
-.then((res)=>res.json())
-.then((data) => setMovies(data.Search));
+  .then((res) => res.json())
+  .then((data) => setMovies(data.Search));
+},[])
+
+
 
 return (
     <>
