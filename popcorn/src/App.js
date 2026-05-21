@@ -12,7 +12,7 @@ const[isLoading, setIsLoading] = useState(false);
 const [error, setError] = useState("");
 
 
-const tempQuery = "inception";
+const tempQuery = "incepon";
 useEffect(function (){
 async function fetchMovies(){
 try {
@@ -45,7 +45,7 @@ return (
           {/* {isLoading?<Loader/>: <MovieList movies={movies} />} */}
           {isLoading && <LoaderMessage/>}
           {!isLoading && !error && <MovieList movies={movies}/>}
-          {error && <ErrorMessage/>}
+          {error && <ErrorMessage message={error}/>}
         </Box>
         <Box>
           <WatchedSummary watched={watched}/>
@@ -57,7 +57,7 @@ return (
 }
 
 function ErrorMessage({message}){
-  return <p className="error"><span>{message}</span></p>
+  return <p className="error"><span>{message}⛔️</span></p>
 }
 function LoaderMessage() {
   return <p className="loader">Loading.....</p>;
