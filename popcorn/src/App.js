@@ -11,19 +11,23 @@ const [watched, setWatched] = useState(tempWatchedData);
 const[isLoading, setIsLoading] = useState(false);
 const [error, setError] = useState("");
 
+
+const tempQuery = "inception";
 useEffect(function (){
 async function fetchMovies(){
-try{
-    setIsLoading(true);
- const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s="inception"`);
- if(!res.ok)
- throw new Error("Something went wrong with movie fetching");
- const data = await res.json();
- setMovies(data.Search);
- setIsLoading(false); 
-}
-catch(err){
-  setError(err.message)
+try {
+  setIsLoading(true);
+  const res = await fetch(
+    `http://www.omdbapi.com/?apikey=${KEY}&s=${tempQuery}`,
+  );
+  if (!res.ok) throw new Error("Something went wrong with movie fetching");
+  const data = await res.json();
+  if (data.Response === "False") throw new Error("Movie Not Found");
+  setMovies(data.Search);
+} catch (err) {
+  setError(err.message);
+} finally {
+  setIsLoading(false);
 }
 }
 fetchMovies();
