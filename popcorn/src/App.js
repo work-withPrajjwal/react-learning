@@ -10,15 +10,16 @@ const [movies, setMovies] = useState(tempMovieData);
 const [watched, setWatched] = useState(tempWatchedData);
 const[isLoading, setIsLoading] = useState(false);
 const [error, setError] = useState("");
+const [query, setQuery] = useState("");
 
 
-const tempQuery = "incepon";
+
 useEffect(function (){
 async function fetchMovies(){
 try {
   setIsLoading(true);
   const res = await fetch(
-    `http://www.omdbapi.com/?apikey=${KEY}&s=${tempQuery}`,
+    `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
   );
   if (!res.ok) throw new Error("Something went wrong with movie fetching");
   const data = await res.json();
@@ -30,30 +31,36 @@ try {
   setIsLoading(false);
 }
 }
+if(query.length < 3){
+  setMovies([]);
+  setError('');
+  return;
+}
 fetchMovies();
-},[])
+},[query])
 
 
 
 return (
-    <>
-      <NavBar>
-        <NumResult movies={movies} />
-      </NavBar>
-      <Main>
-        <Box>
-          {/* {isLoading?<Loader/>: <MovieList movies={movies} />} */}
-          {isLoading && <LoaderMessage/>}
-          {!isLoading && !error && <MovieList movies={movies}/>}
-          {error && <ErrorMessage message={error}/>}
-        </Box>
-        <Box>
-          <WatchedSummary watched={watched}/>
-          <WatchedMovieList watched={watched}/>
-        </Box>
-      </Main>
-    </>
-  );
+  <>
+    <NavBar>
+      <Search query={query} setQuery={setQuery}/>
+      <NumResult movies={movies} />
+    </NavBar>
+    <Main>
+      <Box>
+        {/* {isLoading?<Loader/>: <MovieList movies={movies} />} */}
+        {isLoading && <LoaderMessage />}
+        {!isLoading && !error && <MovieList movies={movies} />}
+        {error && <ErrorMessage message={error} />}
+      </Box>
+      <Box>
+        <WatchedSummary watched={watched} />
+        <WatchedMovieList watched={watched} />
+      </Box>
+    </Main>
+  </>
+);
 }
 
 function ErrorMessage({message}){
@@ -71,7 +78,6 @@ function NavBar({children}) {
   return (
     <nav className="nav-bar">
       <Logo />
-      <Search />
       {children}
     </nav>
   );
@@ -86,8 +92,8 @@ function Logo() {
     </div>
   );
 }
-function Search() {
-  const [query, setQuery] = useState("");
+function Search({query, setQuery}) {
+  
   return (
     <input
       className="search"
