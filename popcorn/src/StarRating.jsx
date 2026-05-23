@@ -12,15 +12,15 @@ const starContainerStyle = {
   gap: "4px",
 };
 
-StarRating.propTypes = {
-  maxRating: propTypes.number,
-  color: propTypes.string,
-  defaultRating: propTypes.number,
-  size: propTypes.number,
-  messages: propTypes.array,
-  onSetMovieRating: propTypes.func,
-  className: propTypes.string,
-};
+// StarRating.propTypes = {
+//   maxRating: propTypes.number,
+//   color: propTypes.string,
+//   defaultRating: propTypes.number,
+//   size: propTypes.number,
+//   messages: propTypes.array,
+//   onSetMovieRating: propTypes.func,
+//   className: propTypes.string,
+// };
 
 function StarRating({
   maxRating = 5,
@@ -36,7 +36,7 @@ function StarRating({
 
   function handleRating(rating) {
     setRating(rating);
-    // onSetMovieRating(rating);
+    onSetMovieRating?.(rating);
   }
 
   const textStyle = {
@@ -76,8 +76,8 @@ function StarRating({
 function Star({ onRate, full, onHoverIn, onHoverOut, color, size }) {
 
   const starStyle = {
-    width: "48px",
-    height: "48px",
+    width: `${size}px`,
+    height: `${size}px`,
     display: "block",
     cursor: "pointer",
   };

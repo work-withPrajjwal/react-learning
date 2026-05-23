@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import propTypes, { func } from "prop-types";
+import StarRating from "./StarRating";
 
 const tempMovieData = [];
 const tempWatchedData= [];
 const KEY = "14fae592";
 
 export default function App() {
-const [movies, setMovies] = useState(tempMovieData);
-const [watched, setWatched] = useState(tempWatchedData);
+const [movies, setMovies] = useState([]);
+const [watched, setWatched] = useState([]);
 const[isLoading, setIsLoading] = useState(false);
 const [error, setError] = useState("");
 const [query, setQuery] = useState("");
@@ -26,6 +27,9 @@ function handleCloseMovie(){
   setSelectedId(null);
 }
 
+function handleWatchedMovie(movie){
+  setWatched((watched)=>[...watched, movie])
+}
 
 useEffect(function (){
 async function fetchMovies(){
@@ -76,11 +80,12 @@ return (
           <MovieDetails
             selectedId={selectedId}
             onCloseMovie={handleCloseMovie}
+            onAddWatched={handleWatchedMovie}
           />
         ) : (
           <>
-            <WatchedMovieList watched={watched} />
             <WatchedSummary watched={watched} />
+            <WatchedMovieList watched={watched} />
           </>
         )}
       </Box>
@@ -89,13 +94,12 @@ return (
 );
 }
 
-function MovieDetails({selectedId, onCloseMovie}){
+function MovieDetails({selectedId, onCloseMovie, onAddWatched}){
 const [movie, setMovie] = useState([]);
 const [isLoading, setIsLoading]= useState(false);
 
 const {
   Title: title,
-  Year: year,
   Released: released,
   Runtime: runtime,
   Plot: plot,
@@ -103,8 +107,16 @@ const {
   Poster: poster,
   imdbRating,
   Genre: genre,
-  Actors:actors
+  Actors:actors,
+  Year: year
 } = movie;
+
+
+function handleAdd(){
+  const newWatchedMovie={
+    imdbRating, imdbID:selectedId, poster, year, runtime, title}
+  onAddWatched(newWatchedMovie);
+}
 
   useEffect(function(){
 async function getMovieDetails(){
@@ -140,6 +152,10 @@ return (
           </div>
         </header>
         <section>
+          <div className="rating">
+            <StarRating maxRating={10} size={24} />
+            <button className="btn-add" onClick={handleAdd}>+ Add to list</button>
+          </div>
           <p className="plot">
             <em>{plot}</em>
           </p>
