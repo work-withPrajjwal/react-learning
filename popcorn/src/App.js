@@ -116,6 +116,7 @@ function handleAdd(){
   const newWatchedMovie={
     imdbRating, imdbID:selectedId, poster, year, runtime, title}
   onAddWatched(newWatchedMovie);
+  onCloseMovie();
 }
 
   useEffect(function(){
@@ -322,7 +323,7 @@ function WatchedMovieList({ watched }) {
   return (
     <ul className="list">
       {watched.map((movie) => (
-        <WatchMovie movie={movie} key={movie.imdbID} />
+        <WatchMovie movie={movie} key={movie.imdbId} />
       ))}
     </ul>
   );
@@ -331,8 +332,8 @@ function WatchedMovieList({ watched }) {
 function WatchMovie({ movie }) {
   return (
     <li>
-      <img src={movie.Poster} alt={`${movie.Title} poster`} />
-      <h3>{movie.Title}</h3>
+      <img src={movie.poster} alt={`${movie.title} poster`} />
+      <h3>{movie.title}</h3>
       <div>
         <p>
           <span>⭐️</span>
@@ -344,7 +345,7 @@ function WatchMovie({ movie }) {
         </p>
         <p>
           <span>⏳</span>
-          <span>{movie.runtime} min</span>
+          <span>{movie.runtime}</span>
         </p>
       </div>
     </li>
