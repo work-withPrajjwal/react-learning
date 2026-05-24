@@ -34,6 +34,7 @@ function handleDeleteWatched(id){
   setWatched((watched)=> watched.filter((movie)=> movie.imdbID !==id))
 }
 
+
 useEffect(function (){
 async function fetchMovies(){
 try {
@@ -125,6 +126,16 @@ function handleAdd(){
   onAddWatched(newWatchedMovie);
   onCloseMovie();
 }
+
+useEffect(function () {
+  if(!title) return;
+  document.title = `Movie | ${title}`;
+
+  return function(){
+    document.title = "usePopcorn"
+  }
+},[title]);
+
 
   useEffect(function(){
 async function getMovieDetails(){
