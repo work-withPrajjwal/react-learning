@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import propTypes, { func } from "prop-types";
 import StarRating from "./StarRating";
 
-const tempMovieData = [];
-const tempWatchedData= [];
+
 const KEY = "14fae592";
 
 export default function App() {
@@ -29,6 +28,10 @@ function handleCloseMovie(){
 
 function handleWatchedMovie(movie){
   setWatched((watched)=>[...watched, movie])
+}
+
+function handleDeleteWatched(id){
+  setWatched((watched)=> watched.filter((movie)=> movie.imdbID !==id))
 }
 
 useEffect(function (){
@@ -72,6 +75,7 @@ return (
         {isLoading && <LoaderMessage />}
         {!isLoading && !error && (
           <MovieList movies={movies} onSelectMovie={handleSelectMovie}/>
+          
         )}
         {error && <ErrorMessage message={error} />}
       </Box>
@@ -86,7 +90,7 @@ return (
         ) : (
           <>
             <WatchedSummary watched={watched} />
-            <WatchedMovieList watched={watched} />
+            <WatchedMovieList watched={watched} onDeleteWatched={handleDeleteWatched} />
           </>
         )}
       </Box>
@@ -342,17 +346,17 @@ function WatchedSummary({ watched }) {
   );
 }
 
-function WatchedMovieList({ watched }) {
+function WatchedMovieList({ watched, onDeleteWatched }) {
   return (
     <ul className="list">
       {watched.map((movie) => (
-        <WatchMovie movie={movie} key={movie.imdbID} />
+        <WatchMovie movie={movie} key={movie.imdbID} onDeleteWatched={onDeleteWatched} />
       ))}
     </ul>
   );
 }
 
-function WatchMovie({ movie }) {
+function WatchMovie({ movie, onDeleteWatched }) {
   return (
     <li>
       <img src={movie.poster} alt={`${movie.title} poster`} />
@@ -369,6 +373,7 @@ function WatchMovie({ movie }) {
         <p>
           <span>⏳</span>
           <span>{movie.runtime} min</span>
+          <button className="btn-delete" onClick={()=>onDeleteWatched(movie.imdbID)}>x</button>
         </p>
       </div>
     </li>
