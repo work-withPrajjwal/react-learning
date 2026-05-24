@@ -134,7 +134,7 @@ useEffect(function (){
   function callback(e){
   if (e.code === "Escape") {
     onCloseMovie();
-    console.log("closing");
+
   }
   }
   document.addEventListener("keydown", callback)
