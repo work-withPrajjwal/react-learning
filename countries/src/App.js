@@ -8,6 +8,14 @@ return (
 )
 }
 
+function Navigation(){
+  return(
+    <div>
+      <SearchCountries/>
+      <FilterCountries/>
+    </div>
+  )
+}
 
 function Header(){
 return(
