@@ -24,3 +24,7 @@ code {
 .container{
   background-color:#323C49; 
 }
+
+.countries {
+  display: flex;
+}
