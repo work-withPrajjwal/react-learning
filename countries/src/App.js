@@ -23,8 +23,21 @@ return(
 )
 }
 
-function Search(){
+function SearchCountries(){
   return(
     <input type='text' placeholder="🔎search for a country"/>
   )
+}
+
+function FilterCountries(){
+  return(
+    <select>
+    <option value='asia'>Asia</option>
+    <option value='africa'>Africa</option>
+    <option value='europe'>Europe</option>
+    <option value='northAmerica'>North America</option>
+    <option value='southAmerica'>South America</option>
+    <option value='ocenia'>Ocenia</option>
+    </select>
+  );
 }
