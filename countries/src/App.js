@@ -3,6 +3,7 @@ return (
   <div className="container">
 
   <Header/>
+  <Search/>
   </div>
 )
 }
@@ -20,4 +21,10 @@ return(
 
   </div>
 )
+}
+
+function Search(){
+  return(
+    <input type='text' placeholder="🔎search for a country"/>
+  )
 }
