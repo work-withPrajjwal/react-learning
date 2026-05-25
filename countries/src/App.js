@@ -1,18 +1,21 @@
+import { useState } from "react"
+
 export default function App(){
+  const [region, setRegion] = useState("")
 return (
   <div className="container">
 
   <Header/>
-  <Search/>
+  <Navigation setRegion={setRegion}/>
   </div>
 )
 }
 
-function Navigation(){
+function Navigation({region, setRegion}){
   return(
     <div>
       <SearchCountries/>
-      <FilterCountries/>
+      <FilterCountries region={region} setRegion={setRegion}/>
     </div>
   )
 }
@@ -37,9 +40,9 @@ function SearchCountries(){
   )
 }
 
-function FilterCountries(){
+function FilterCountries({region, setRegion}){
   return(
-    <select>
+    <select value={region} onChange={(e)=>setRegion(e.target.value)}>
     <option value='asia'>Asia</option>
     <option value='africa'>Africa</option>
     <option value='europe'>Europe</option>
