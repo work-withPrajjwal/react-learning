@@ -31,7 +31,7 @@ function CountriesList({ countries }) {
   return (
     <ul className="country">
       {countries.map((country) => (
-        <Country country={country} />
+        <Country country={country} key={country.area} />
       ))}
     </ul>
   );
@@ -39,7 +39,7 @@ function CountriesList({ countries }) {
 
 function Country({ country }) {
   return (
-    <li>
+    <li >
       <img src={country.flags.png} alt={`Falg of`} />
     </li>
   );
