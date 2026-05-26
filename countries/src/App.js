@@ -3,26 +3,40 @@ import { useEffect, useState } from "react";
 export default function App() {
   const [region, setRegion] = useState("asia");
   const [countries, setCountries] = useState([]);
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState("");
 
   useEffect(
     function () {
       async function fetchCountries() {
-        const res = await fetch(
+        if(!query.length>0){
+  const res = await fetch(
           ` https://restcountries.com/v3.1/region/${region}`,
         );
-
+ 
         const data = await res.json();
         setCountries(data);
       }
+      
+        else{
+          const res = await fetch(
+            ` https://restcountries.com/v3.1/region/${query}`,
+          );
+          const data = await res.json();
+          setCountries(data)
+          return;
+
+        }
+      }
       fetchCountries();
     },
-    [region],
+    [region, query],
   );
   return (
     <div className="container">
       <Header />
-      <Navigation setRegion={setRegion}><SearchCountries query={query} setQuery={setQuery}/></Navigation>
+      <Navigation setRegion={setRegion}>
+        <SearchCountries query={query} setQuery={setQuery} />
+      </Navigation>
       <CountriesList countries={countries} />
     </div>
   );
@@ -81,14 +95,14 @@ function Header() {
   );
 }
 
-function SearchCountries(query, setQuery) {
+function SearchCountries({query, setQuery}) {
   return (
     <input
       className="search-input"
       type="text"
       placeholder="🔎search for a country"
       value={query}
-      onChange={(e)=>e.target.value}
+      onChange={(e) => setQuery(e.target.value)}
     />
   );
 }
@@ -103,8 +117,7 @@ function FilterCountries({ region, setRegion }) {
       <option value="asia">Asia</option>
       <option value="africa">Africa</option>
       <option value="europe">Europe</option>
-      <option value="northAmerica">North America</option>
-      <option value="southAmerica">South America</option>
+      <option value="america">America</option>
       <option value="ocenia">Ocenia</option>
     </select>
   );
