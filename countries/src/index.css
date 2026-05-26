@@ -146,3 +146,21 @@ body {
 .countries-list .info h3{
   margin-bottom: 1rem;
 }
+
+.single-country{
+  width:50vw;
+  height:50vh;
+  list-style: none;
+}
+
+.single-country li{
+  width: 100%;
+  height: 80%;
+}
+
+.single-country li img{
+  width: 100%;
+  height: 270px;
+  object-fit: contain;
+  display: block;
+}

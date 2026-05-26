@@ -8,23 +8,19 @@ export default function App() {
   useEffect(
     function () {
       async function fetchCountries() {
-        if(!query.length>0){
-  const res = await fetch(
-          ` https://restcountries.com/v3.1/region/${region}`,
-        );
- 
-        const data = await res.json();
-        setCountries(data);
-      }
-      
-        else{
+        if (!query.length > 0) {
           const res = await fetch(
-            ` https://restcountries.com/v3.1/region/${query}`,
+            ` https://restcountries.com/v3.1/region/${region}`,
+          );
+
+          const data = await res.json();
+          setCountries(data);
+        } else {
+          const res = await fetch(
+            ` https://restcountries.com/v3.1/name/${query}`,
           );
           const data = await res.json();
-          setCountries(data)
-          return;
-
+          setCountries(data);
         }
       }
       fetchCountries();
@@ -44,15 +40,15 @@ export default function App() {
 
 function CountriesList({ countries }) {
   return (
-    <ul className="countries">
+    <ul className={countries.length === 1 ? "single-country" : "countries"}>
       {countries.map((country) => (
-        <Country country={country} key={country.area} />
+        <Country country={country} />
       ))}
     </ul>
   );
 }
 
-function Country({ country }) {
+function Country({ country, countries }) {
   return (
     <li className="countries-list">
       <img src={country.flags.png} alt={`Falg of ${country.name.common}`} />
@@ -95,7 +91,7 @@ function Header() {
   );
 }
 
-function SearchCountries({query, setQuery}) {
+function SearchCountries({ query, setQuery }) {
   return (
     <input
       className="search-input"
