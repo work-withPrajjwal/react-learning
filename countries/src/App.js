@@ -29,7 +29,7 @@ export default function App() {
 
 function CountriesList({ countries }) {
   return (
-    <ul className="country">
+    <ul className="countries">
       {countries.map((country) => (
         <Country country={country} key={country.area} />
       ))}
@@ -39,14 +39,17 @@ function CountriesList({ countries }) {
 
 function Country({ country }) {
   return (
-    <li >
-      <img src={country.flags.png} alt={`Falg of`} />
+    <li className="countries-list">
+      <img src={country.flags.png} alt={`Falg of ${country.name.common}`} />
+      <h3>{country.name.common}</h3>
+
+  <p><strong>Population:</strong>{country.population}</p>
     </li>
   );
 }
 function Navigation({ region, setRegion }) {
   return (
-    <div>
+    <div className="navigation">
       <SearchCountries />
       <FilterCountries region={region} setRegion={setRegion} />
     </div>
@@ -66,12 +69,12 @@ function Header() {
 }
 
 function SearchCountries() {
-  return <input type="text" placeholder="🔎search for a country" />;
+  return <input  className='search-input' type="text" placeholder="🔎search for a country" />;
 }
 
 function FilterCountries({ region, setRegion }) {
   return (
-    <select value={region} onChange={(e) => setRegion(e.target.value)}>
+    <select className="filter-select" value={region} onChange={(e) => setRegion(e.target.value)}>
       <option value="asia">Asia</option>
       <option value="africa">Africa</option>
       <option value="europe">Europe</option>
