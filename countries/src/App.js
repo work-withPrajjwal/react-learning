@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 export default function App() {
   const [region, setRegion] = useState("asia");
   const [countries, setCountries] = useState([]);
+  const [query, setQuery] = useState('')
 
   useEffect(
     function () {
@@ -21,7 +22,7 @@ export default function App() {
   return (
     <div className="container">
       <Header />
-      <Navigation setRegion={setRegion} />
+      <Navigation setRegion={setRegion}><SearchCountries query={query} setQuery={setQuery}/></Navigation>
       <CountriesList countries={countries} />
     </div>
   );
@@ -59,10 +60,10 @@ function Country({ country }) {
     </li>
   );
 }
-function Navigation({ region, setRegion }) {
+function Navigation({ region, setRegion, children }) {
   return (
     <div className="navigation">
-      <SearchCountries />
+      {children}
       <FilterCountries region={region} setRegion={setRegion} />
     </div>
   );
@@ -80,12 +81,14 @@ function Header() {
   );
 }
 
-function SearchCountries() {
+function SearchCountries(query, setQuery) {
   return (
     <input
       className="search-input"
       type="text"
       placeholder="🔎search for a country"
+      value={query}
+      onChange={(e)=>e.target.value}
     />
   );
 }
