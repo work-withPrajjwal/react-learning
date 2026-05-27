@@ -4,7 +4,7 @@ export default function App() {
   const [region, setRegion] = useState("asia");
   const [countries, setCountries] = useState([]);
   const [query, setQuery] = useState("");
-  const [modalCountry, setModalCountry] = ({})
+  const [modalCountry, setModalCountry] = useState({})
 
 function handleOpenModal(country){
   setModalCountry(country)
@@ -38,7 +38,9 @@ function handleOpenModal(country){
       <Navigation setRegion={setRegion}>
         <SearchCountries query={query} setQuery={setQuery} />
       </Navigation>
-      <CountriesList countries={countries} onOpenModal = {handleOpenModal}/>
+     {
+      Object.values(modalCountry).length > 0 ? <CountryModal/>: <CountriesList countries={countries} onOpenModal = {handleOpenModal}/>
+     }
     </div>
   );
 }
