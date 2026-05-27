@@ -63,10 +63,15 @@ function CountriesList({ countries, onOpenModal }) {
 
 function CountryModal({onClose,modalCountry}){
   return (
-    <div className="country-modal">Hello
-    <button onClick={onClose}>x</button>
+    <div className="country-modal">
+      <button className="btnClose" onClick={onClose}>
+        X
+      </button>
+      <div className="modal-image">
+        <img src={modalCountry.flags.png} alt={modalCountry.flags.alt}/>
+      </div>
     </div>
-  )
+  );
 }
 function Country({ country, countries, onOpenModal }) {
   return (

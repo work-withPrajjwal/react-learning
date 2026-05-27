@@ -178,6 +178,11 @@ body {
   cursor: pointer;
 }
 
-.contry-modal .btn-close{
+.btnClose{
+  all: unset;
  border-style: none;
+ cursor: pointer;
+ margin-left: 96%;
+ font-size: x-large;
+ font-weight: 600;
 }
