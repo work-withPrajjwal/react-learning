@@ -7,6 +7,7 @@ export default function App() {
   const [modalCountry, setModalCountry] = useState({});
   const [isOpen, setIsOpen] = useState(false);
 
+
   function handleOpenModal(country) {
     setModalCountry(country);
     setIsOpen(true);
@@ -57,7 +58,10 @@ function CountriesList({ countries, onOpenModal }) {
   return (
     <ul className={countries.length === 1 ? "single-country" : "countries"}>
       {countries.map((country) => (
-        <Country country={country} onOpenModal={onOpenModal} />
+        <Country
+          country={country}
+          onOpenModal={onOpenModal}
+        />
       ))}
     </ul>
   );
@@ -70,7 +74,7 @@ function CountryModal({ onClose, modalCountry }) {
         X
       </button>
       <div>
-        <h2>{modalCountry.name.official}</h2>
+        <h2 className="country-title">{modalCountry.name.official}</h2>
       </div>
       <div className="modal-images">
         <img
