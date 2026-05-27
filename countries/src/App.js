@@ -4,6 +4,11 @@ export default function App() {
   const [region, setRegion] = useState("asia");
   const [countries, setCountries] = useState([]);
   const [query, setQuery] = useState("");
+  const [modalCountry, setModalCountry] = ({})
+
+function handleOpenModal(country){
+  setModalCountry(country)
+}
 
   useEffect(
     function () {
@@ -48,6 +53,11 @@ function CountriesList({ countries }) {
   );
 }
 
+function CountryModal(){
+  return (
+    <div></div>
+  )
+}
 function Country({ country, countries }) {
   return (
     <li className="countries-list">
