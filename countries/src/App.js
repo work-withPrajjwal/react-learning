@@ -4,20 +4,18 @@ export default function App() {
   const [region, setRegion] = useState("asia");
   const [countries, setCountries] = useState([]);
   const [query, setQuery] = useState("");
-  const [modalCountry, setModalCountry] = useState({})
-  const[isOpen, setIsOpen] = useState(false)
+  const [modalCountry, setModalCountry] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
 
-function handleOpenModal(country){
-  setModalCountry(country)
-  setIsOpen(true)
-  
-}
+  function handleOpenModal(country) {
+    setModalCountry(country);
+    setIsOpen(true);
+  }
 
-
-function handleClose(){
- setIsOpen(currClose => !currClose)
- setModalCountry({});
-}
+  function handleClose() {
+    setIsOpen((currClose) => !currClose);
+    setModalCountry({});
+  }
   useEffect(
     function () {
       async function fetchCountries() {
@@ -46,9 +44,11 @@ function handleClose(){
       <Navigation setRegion={setRegion}>
         <SearchCountries query={query} setQuery={setQuery} />
       </Navigation>
-     {
-      isOpen ? <CountryModal onClose={handleClose} modalCountry={modalCountry}/>: <CountriesList countries={countries} onOpenModal = {handleOpenModal} />
-     }
+      {isOpen ? (
+        <CountryModal onClose={handleClose} modalCountry={modalCountry} />
+      ) : (
+        <CountriesList countries={countries} onOpenModal={handleOpenModal} />
+      )}
     </div>
   );
 }
@@ -57,28 +57,35 @@ function CountriesList({ countries, onOpenModal }) {
   return (
     <ul className={countries.length === 1 ? "single-country" : "countries"}>
       {countries.map((country) => (
-        <Country country={country} onOpenModal={onOpenModal}/>
+        <Country country={country} onOpenModal={onOpenModal} />
       ))}
     </ul>
   );
 }
 
-function CountryModal({onClose, modalCountry}){
+function CountryModal({ onClose, modalCountry }) {
   return (
     <div className="country-modal">
       <button className="btnClose" onClick={onClose}>
         X
       </button>
-      <div className="modal-image">
-        <img src={modalCountry.courtofarms} alt={/>
-        <img src={modalCountry.flags.png} alt={modalCountry.flags.alt}/>
+      <div>
+        <h2>{modalCountry.altSpellings[1]}</h2>
+      </div>
+      <div className="modal-images">
+        <img
+          className="coatOfArms"
+          src={modalCountry.coatOfArms.png}
+          alt={modalCountry.flags.alt}
+        />
+        <img src={modalCountry.flags.png} alt={modalCountry.flags.alt} />
       </div>
     </div>
   );
 }
 function Country({ country, countries, onOpenModal }) {
   return (
-    <li className="countries-list" onClick={()=>onOpenModal(country)}>
+    <li className="countries-list" onClick={() => onOpenModal(country)}>
       <img src={country.flags.png} alt={`Falg of ${country.name.common}`} />
       <div className="info">
         <h3>{country.name.common}</h3>
