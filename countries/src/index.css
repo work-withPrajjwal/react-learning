@@ -186,3 +186,13 @@ body {
  font-size: x-large;
  font-weight: 600;
 }
+
+.modal-images{
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-images .coatOfArms{
+  height: 200px;
+
+}

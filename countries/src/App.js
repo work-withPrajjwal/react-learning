@@ -10,7 +10,9 @@ export default function App() {
 function handleOpenModal(country){
   setModalCountry(country)
   setIsOpen(true)
+  
 }
+
 
 function handleClose(){
  setIsOpen(currClose => !currClose)
@@ -45,7 +47,7 @@ function handleClose(){
         <SearchCountries query={query} setQuery={setQuery} />
       </Navigation>
      {
-      isOpen ? <CountryModal onClose={handleClose}/>: <CountriesList countries={countries} onOpenModal = {handleOpenModal}/>
+      isOpen ? <CountryModal onClose={handleClose} modalCountry={modalCountry}/>: <CountriesList countries={countries} onOpenModal = {handleOpenModal} />
      }
     </div>
   );
@@ -61,13 +63,14 @@ function CountriesList({ countries, onOpenModal }) {
   );
 }
 
-function CountryModal({onClose,modalCountry}){
+function CountryModal({onClose, modalCountry}){
   return (
     <div className="country-modal">
       <button className="btnClose" onClick={onClose}>
         X
       </button>
       <div className="modal-image">
+        <img src={modalCountry.courtofarms} alt={/>
         <img src={modalCountry.flags.png} alt={modalCountry.flags.alt}/>
       </div>
     </div>
