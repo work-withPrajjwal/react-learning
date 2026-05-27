@@ -164,3 +164,20 @@ body {
   object-fit: contain;
   display: block;
 }
+
+.country-modal{
+  border: 1px solif #525066;
+  margin-left: 10%;
+  height: 70vh;
+  width: 80vw;
+  background-color: #525066;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.contry-modal .btn-close{
+ border-style: none;
+}

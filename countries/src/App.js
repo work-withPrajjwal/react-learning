@@ -5,11 +5,17 @@ export default function App() {
   const [countries, setCountries] = useState([]);
   const [query, setQuery] = useState("");
   const [modalCountry, setModalCountry] = useState({})
+  const[isOpen, setIsOpen] = useState(false)
 
 function handleOpenModal(country){
   setModalCountry(country)
+  setIsOpen(true)
 }
 
+function handleClose(){
+ setIsOpen(currClose => !currClose)
+ setModalCountry({});
+}
   useEffect(
     function () {
       async function fetchCountries() {
@@ -39,7 +45,7 @@ function handleOpenModal(country){
         <SearchCountries query={query} setQuery={setQuery} />
       </Navigation>
      {
-      Object.values(modalCountry).length > 0 ? <CountryModal/>: <CountriesList countries={countries} onOpenModal = {handleOpenModal}/>
+      isOpen ? <CountryModal onClose={handleClose}/>: <CountriesList countries={countries} onOpenModal = {handleOpenModal}/>
      }
     </div>
   );
@@ -55,9 +61,11 @@ function CountriesList({ countries, onOpenModal }) {
   );
 }
 
-function CountryModal(){
+function CountryModal({onClose,modalCountry}){
   return (
-    <div>Hello</div>
+    <div className="country-modal">Hello
+    <button onClick={onClose}>x</button>
+    </div>
   )
 }
 function Country({ country, countries, onOpenModal }) {
