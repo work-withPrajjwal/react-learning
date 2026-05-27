@@ -38,16 +38,16 @@ function handleOpenModal(country){
       <Navigation setRegion={setRegion}>
         <SearchCountries query={query} setQuery={setQuery} />
       </Navigation>
-      <CountriesList countries={countries} />
+      <CountriesList countries={countries} onOpenModal = {handleOpenModal}/>
     </div>
   );
 }
 
-function CountriesList({ countries }) {
+function CountriesList({ countries, onOpenModal }) {
   return (
     <ul className={countries.length === 1 ? "single-country" : "countries"}>
       {countries.map((country) => (
-        <Country country={country} />
+        <Country country={country} onOpenModal={onOpenModal}/>
       ))}
     </ul>
   );
@@ -55,12 +55,12 @@ function CountriesList({ countries }) {
 
 function CountryModal(){
   return (
-    <div></div>
+    <div>Hello</div>
   )
 }
-function Country({ country, countries }) {
+function Country({ country, countries, onOpenModal }) {
   return (
-    <li className="countries-list">
+    <li className="countries-list" onClick={()=>onOpenModal(country)}>
       <img src={country.flags.png} alt={`Falg of ${country.name.common}`} />
       <div className="info">
         <h3>{country.name.common}</h3>
