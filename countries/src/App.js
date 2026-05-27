@@ -70,7 +70,7 @@ function CountryModal({ onClose, modalCountry }) {
         X
       </button>
       <div>
-        <h2>{modalCountry.altSpellings[1]}</h2>
+        <h2>{modalCountry.name.official}</h2>
       </div>
       <div className="modal-images">
         <img
