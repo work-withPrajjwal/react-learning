@@ -142,7 +142,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     [onCloseMovie],
   );
 
-  /* eslint-disable */
+
   // if(imdbRating >8)[isTop, setIsTop] = useState(true);
 
 
