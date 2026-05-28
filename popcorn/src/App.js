@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import StarRating from "./StarRating";
 
 const KEY = "14fae592";
@@ -15,8 +15,6 @@ export default function App() {
     return JSON.parse(storedValue);
   });
 
- 
-
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (selectedId === id ? null : id));
   }
@@ -27,7 +25,7 @@ export default function App() {
 
   function handleWatchedMovie(movie) {
     setWatched((watched) => [...watched, movie]);
-    localStorage.setItem('watched', JSON.stringify([...watched, movie]))
+    localStorage.setItem("watched", JSON.stringify([...watched, movie]));
   }
 
   function handleDeleteWatched(id) {
@@ -117,6 +115,9 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   const watchedUserRating = watched.find(
     (movie) => movie.imdbID === selectedId,
   )?.userRating;
+
+  const countRef = useRef(0);
+
   const {
     Title: title,
     Released: released,
@@ -129,6 +130,10 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     Actors: actors,
     Year: year,
   } = movie;
+
+  useEffect(function () {
+    if (userRating) countRef.current = countRef.current + 1;
+  });
 
   useEffect(
     function () {
@@ -146,15 +151,12 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     [onCloseMovie],
   );
 
-
   // if(imdbRating >8)[isTop, setIsTop] = useState(true);
-
 
   // const[isTop, setIsTop] = useState(imdbRating>8)
   // useEffect(function(){
   //  setIsTop(imdbRating > 8)
   // }, imdbRating)
-
 
   function handleAdd() {
     const newWatchedMovie = {
@@ -289,8 +291,24 @@ function Logo() {
   );
 }
 function Search({ query, setQuery }) {
+  const inputEl = useRef(null);
+  console.log(inputEl);
+  useEffect(function () {
+    function callback(e) {
+      if (e.code === "Enter") {
+        inputEl.current.focus();
+        setQuery('')
+      }
+    }
+    document.addEventListener("keydown", callback);
+    return function (){
+      document.removeEventListener("keydown", callback)
+    }
+  }, []);
+
   return (
     <input
+      ref={inputEl}
       className="search"
       type="text"
       placeholder="Search movies..."
