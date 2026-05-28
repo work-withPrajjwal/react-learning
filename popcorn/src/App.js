@@ -24,6 +24,7 @@ export default function App() {
 
   function handleWatchedMovie(movie) {
     setWatched((watched) => [...watched, movie]);
+    localStorage.setItem('watched', JSON.stringify([...watched, movie]))
   }
 
   function handleDeleteWatched(id) {
