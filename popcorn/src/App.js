@@ -145,6 +145,13 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   /* eslint-disable */
   // if(imdbRating >8)[isTop, setIsTop] = useState(true);
 
+
+  // const[isTop, setIsTop] = useState(imdbRating>8)
+  // useEffect(function(){
+  //  setIsTop(imdbRating > 8)
+  // }, imdbRating)
+
+
   function handleAdd() {
     const newWatchedMovie = {
       imdbRating: Number(imdbRating),
