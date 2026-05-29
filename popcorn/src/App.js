@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import StarRating from "./StarRating";
 import { useMovie } from "./useMovie";
 import { useLocalStorageState } from "./useLocalStorageState";
+import { useKey } from "./useKey";
 
 
 const KEY = "14fae592";
@@ -82,6 +83,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 
   const countRef = useRef(0);
 
+  useKey("Escape", onCloseMovie);
   const {
     Title: title,
     Released: released,
@@ -98,22 +100,6 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   useEffect(function () {
     if (userRating) countRef.current = countRef.current + 1;
   });
-
-  useEffect(
-    function () {
-      function callback(e) {
-        if (e.code === "Escape") {
-          onCloseMovie();
-        }
-      }
-      document.addEventListener("keydown", callback);
-
-      return function () {
-        document.removeEventListener("keydown", callback);
-      };
-    },
-    [onCloseMovie],
-  );
 
   // if(imdbRating >8)[isTop, setIsTop] = useState(true);
 
