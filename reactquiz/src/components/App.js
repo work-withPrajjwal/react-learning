@@ -32,6 +32,8 @@ function reducer(state, action) {
       return { ...state, index: state.index + 1, answer:null };
       case "finish":
         return{...state, status:'finished'};
+        case "restart":
+          return{...state, status: 'ready', index:0, answer:null, points:0}
     default:
       throw new Error("Action unknown");
   }
@@ -78,7 +80,7 @@ function App() {
           </>
         )}
         {
-          status=== "finished" && <FinishedScreen points={points} maxPossiblePoints={maxPossiblePoints}/>
+          status=== "finished" && <FinishedScreen dispatch={dispatch} points={points} maxPossiblePoints={maxPossiblePoints}/>
         }
       </Main>
     </div>
