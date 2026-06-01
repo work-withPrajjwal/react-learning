@@ -9,6 +9,7 @@ import Progress from "./Progress";
 import NextButton from "./NextButton";
 import FinishedScreen from "./FinishedScreen"
 import Footer from "../Footer";
+import Timer from "../Timer";
 
 const initialState = {
   questions: [],
@@ -82,6 +83,7 @@ function App() {
               dispatch={dispatch}
             />
             <Footer>
+              <Timer/>
               <NextButton
                 dispatch={dispatch}
                 answer={answer}
