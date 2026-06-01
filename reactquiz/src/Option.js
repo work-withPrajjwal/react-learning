@@ -1,4 +1,4 @@
-export default function Option({ question }) {
+export default function Option({ question, answer, dispatch }) {
   return (
     <div className="options">
       {question.options.map((option) => (
