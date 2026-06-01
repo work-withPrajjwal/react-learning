@@ -3,6 +3,7 @@ import Header from "./Header";
 import Main from "./Main";
 import Loader from "./Loader"
 import Error from "./Error"
+import StartScreen from "./StartScreen"
 
 const initialState = {
   questions: [],
@@ -28,7 +29,7 @@ function App() {
     fetch("http://localhost:3001/questions")
       .then((res) => res.json())
       .then((data) => dispatch({ type: "dataRecieved", payload: data }))
-      .then((err) => dispatch({ type: "dataFailed" }));
+      .catch((err) => dispatch({ type: "dataFailed" }));
   }, []);
   return (
     <div className="app">
@@ -36,6 +37,7 @@ function App() {
       <Main>
        {status === 'loading' && <Loader />}
        {status === "error" && <Error/>}
+       {status==='ready' && <StartScreen/>}
       </Main>
     </div>
   );
