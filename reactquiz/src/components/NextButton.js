@@ -15,7 +15,7 @@ if (index < numQuestions-1)
     return (
       <button
         className="btn btn-ui"
-        onClick={() => dispatch({ type: "nextQuestion" })}
+        onClick={() => dispatch({ type: "finish" })}
       >
         Finish
       </button>
