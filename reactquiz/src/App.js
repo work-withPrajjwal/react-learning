@@ -1,6 +1,7 @@
 import { useEffect, useReducer } from "react";
 import Header from "./Header";
 import Main from "./Main";
+import Loader from "./Loader"
 
 const initialState = {
   questions: [],
@@ -32,7 +33,7 @@ function App() {
     <div className="app">
       <Header />
       <Main>
-       {state.status === 'loading'}
+       {status === 'loading' && <Loader />}
       </Main>
     </div>
   );
