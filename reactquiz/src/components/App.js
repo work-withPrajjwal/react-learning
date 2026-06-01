@@ -11,6 +11,7 @@ import FinishedScreen from "./FinishedScreen"
 import Footer from "../Footer";
 import Timer from "../Timer";
 
+const SEC_PER_QUESTION=30;
 const initialState = {
   questions: [],
   // loading, error, ready, active, finish
@@ -19,7 +20,7 @@ const initialState = {
   answer: null,
   points: 0,
   highScore: 0,
-  secondsRemaining: 10,
+  secondsRemaining: null,
   
 };
 function reducer(state, action) {
@@ -29,7 +30,7 @@ function reducer(state, action) {
     case "dataFailed":
       return { ...state, status: "error" };
     case "start":
-      return { ...state, status: "active" };
+      return { ...state, status: "active", secondsRemaining: state.questions.length * SEC_PER_QUESTION};
     case "newAnswer":
       const question = state.questions.at(state.index)
       return { ...state, answer: action.payload, points: action.payload === question.correctOption? state.points +question.points: state.points};
@@ -40,7 +41,7 @@ function reducer(state, action) {
         case "restart":
           return{...state, status: 'ready', index:0, answer:null, points:0}
           case "tick":
-            return{...state, secondsRemaining: state.secondsRemaining-1}
+            return{...state, secondsRemaining: state.secondsRemaining-1, status: state.secondsRemaining ===0? "finished": state.status}
     default:
       throw new Error("Action unknown");
   }
