@@ -6,6 +6,7 @@ import Error from "./Error";
 import StartScreen from "./StartScreen";
 import Question from "./Question";
 import Progress from "./Progress";
+import NextButton from "./NextButton";
 
 const initialState = {
   questions: [],
@@ -63,12 +64,7 @@ function App() {
               answer={answer}
               dispatch={dispatch}
             />
-            <button
-              className="btn btn-ui"
-              onClick={() => dispatch({ type: "nextQuestion" })}
-            >
-              Next
-            </button>
+           <NextButton dispatch={dispatch}/>
           </>
         )}
       </Main>
