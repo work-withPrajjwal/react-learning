@@ -18,7 +18,9 @@ const initialState = {
   index: 0,
   answer: null,
   points: 0,
-  highScore: 0
+  highScore: 0,
+  secondsRemaining: 10,
+  
 };
 function reducer(state, action) {
   switch (action.type) {
@@ -37,13 +39,15 @@ function reducer(state, action) {
         return{...state, status:'finished', highScore: state.points> state.highScore ? state.points : state.highScore};
         case "restart":
           return{...state, status: 'ready', index:0, answer:null, points:0}
+          case "tick":
+            return{...state, secondsRemaining: state.secondsRemaining-1}
     default:
       throw new Error("Action unknown");
   }
 }
 
 function App() {
-  const [{ status, questions, index, answer,points, highScore }, dispatch] = useReducer(
+  const [{ status, questions, index, answer,points, highScore, secondsRemaining }, dispatch] = useReducer(
     reducer,
     initialState,
   );
@@ -83,7 +87,7 @@ function App() {
               dispatch={dispatch}
             />
             <Footer>
-              <Timer/>
+              <Timer secondsRemaining={secondsRemaining} dispatch={dispatch}/>
               <NextButton
                 dispatch={dispatch}
                 answer={answer}
