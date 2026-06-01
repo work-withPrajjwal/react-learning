@@ -28,7 +28,7 @@ function reducer(state, action) {
       const question = state.questions.at(state.index)
       return { ...state, answer: action.payload, points: action.payload === question.correctOption? state.points +question.points: state.points};
     case "nextQuestion":
-      return { ...state, index: state.index + 1 };
+      return { ...state, index: state.index + 1, answer:null };
     default:
       throw new Error("Action unknown");
   }
@@ -64,7 +64,7 @@ function App() {
               answer={answer}
               dispatch={dispatch}
             />
-           <NextButton dispatch={dispatch}/>
+           <NextButton dispatch={dispatch} answer={answer}/>
           </>
         )}
       </Main>
