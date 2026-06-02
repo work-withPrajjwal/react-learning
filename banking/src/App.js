@@ -27,6 +27,7 @@ const initialState = {
   disableBtn: true,
 };
 
+
 function reducer(state, action){
   switch(action.type){
     case "openAccount":
@@ -41,10 +42,10 @@ function reducer(state, action){
           return{...state, balance:state.balance+5000, loan:5000,}
 
           case "payBorrow":
-            return{...state, loan: state.loan ===5000? state.loan-5000:state.loan}
+            return{...state, loan: state.loan ===0? state.loan: state.loan-5000, balance: state.balance}
 
       case "closeAccount":
-        return{...state, disableBtn: state.loan ===0 && state.balance===0 ?true:false, isActive: true}
+        return{...state, disableBtn: state.loan ===0 && state.balance===0 ?true:false,}
    
     default:
       throw new Error ("Actoon Unknown")
