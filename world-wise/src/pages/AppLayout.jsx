@@ -1,12 +1,9 @@
 import PageNav from "../components/PageNav";
 
-
-export default function HomePage() {
+export default function AppLayout() {
   return (
     <div>
-
-        <PageNav/>
-     
+     <PageNav/>
     </div>
   )
 }
