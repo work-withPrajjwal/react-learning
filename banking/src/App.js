@@ -45,7 +45,7 @@ function reducer(state, action){
             return{...state, loan: state.loan ===0? state.loan: state.loan-5000, balance: state.balance}
 
       case "closeAccount":
-        return{...state, disableBtn: state.loan ===0 && state.balance===0 ?true:false,}
+        return{...state, disableBtn: state.loan ===0 && state.balance===0 ?true:false, isActive: !state.isActive}
    
     default:
       throw new Error ("Actoon Unknown")
