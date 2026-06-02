@@ -41,7 +41,7 @@ function reducer(state, action){
           return{...state, balance:state.balance+5000, loan:5000}
 
       case "closeAccount":
-        return{balance:0, loan:0, isActive:false, disableBtn:true}
+        return{...state, disableBtn: state.loan ===0 && state.balance===0 ?true:false, isActive: true}
    
     default:
       throw new Error ("Actoon Unknown")
@@ -51,7 +51,7 @@ function reducer(state, action){
 }
 
 export default function App() {
-  const [{isActive, disableBtn, balance, loan}, dispatch] = useReducer(reducer, initialState)
+  const [{isActive, disableBtn, balance, loan,}, dispatch] = useReducer(reducer, initialState)
 
 
   return (
