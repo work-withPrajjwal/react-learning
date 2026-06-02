@@ -35,10 +35,13 @@ function reducer(state, action){
         return{...state, balance:state.balance + 150,}
 
         case "withdraw":
-          return{...state, balance:state.balance-50}
+          return{...state, balance:state.balance > 0? state.balance-50: state.balance}
            
           case "borrow":
-          return{...state, balance:state.balance+5000, loan:5000}
+          return{...state, balance:state.balance+5000, loan:5000,}
+
+          case "payBorrow":
+            return{...state, loan: state.loan ===5000? state.loan-5000:state.loan}
 
       case "closeAccount":
         return{...state, disableBtn: state.loan ===0 && state.balance===0 ?true:false, isActive: true}
@@ -81,7 +84,7 @@ export default function App() {
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={disableBtn}>
+        <button onClick={() => dispatch({type:'payBorrow'})} disabled={disableBtn}>
           Pay loan
         </button>
       </p>
