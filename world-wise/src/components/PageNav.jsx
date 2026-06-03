@@ -4,7 +4,7 @@ import styles from "./PageNav.module.css";
 export default function PageNav() {
   return (
  <nav className={styles.nav}>
-  <ul>
+  <ul className={styles.list}>
     <li><Link to ="/">Home</Link></li>
     <li><Link to ="/product">Product</Link></li>
     <li><Link to ="/pricing">Pricing</Link></li>
