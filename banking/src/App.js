@@ -24,7 +24,6 @@ const initialState = {
   balance: 0,
   loan: 0,
   isActive: false,
-  disableBtn: true,
 };
 
 
@@ -46,7 +45,8 @@ function reducer(state, action){
             return{...state, loan:0,  balance: state.balance-state.loan,}
 
       case "closeAccount":
-        return{...state, disableBtn: state.loan ===0 && state.balance===0 ?true:false,}
+        if(state.loan >0 || state.balance!==0) return state;
+        return initialState
    
     default:
       throw new Error ("Actoon Unknown")
@@ -56,7 +56,7 @@ function reducer(state, action){
 }
 
 export default function App() {
-  const [{isActive, disableBtn, balance, loan,}, dispatch] = useReducer(reducer, initialState)
+  const [{isActive, balance, loan,}, dispatch] = useReducer(reducer, initialState)
 
 
   return (
@@ -71,27 +71,27 @@ export default function App() {
         </button>
       </p>
       <p>
-        <button onClick={() => dispatch({type:"deposit"})} disabled={disableBtn}>
+        <button onClick={() => dispatch({type:"deposit"})} disabled={!isActive}>
           Deposit 150
         </button>
       </p>
       <p>
-        <button onClick={() => dispatch({type:"withdraw"})} disabled={disableBtn}>
+        <button onClick={() => dispatch({type:"withdraw"})} disabled={!isActive}>
           Withdraw 50
         </button>
       </p>
       <p>
-        <button onClick={() => dispatch({type:"borrow"})} disabled={disableBtn|| loan<0}>
+        <button onClick={() => dispatch({type:"borrow"})} disabled={!isActive|| loan<0}>
           Request a loan of 5000
         </button>
       </p>
       <p>
-        <button onClick={() => dispatch({type:'payBorrow'})} disabled={disableBtn }>
+        <button onClick={() => dispatch({type:'payBorrow'})} disabled={!isActive }>
           Pay loan
         </button>
       </p>
       <p>
-        <button onClick={() =>dispatch({type:"closeAccount"})} disabled={disableBtn}>
+        <button onClick={() =>dispatch({type:"closeAccount"})} disabled={!isActive}>
           Close account
         </button>
       </p>
