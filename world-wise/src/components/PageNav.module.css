@@ -6,6 +6,15 @@
 }
 
 
-.nav .list {
+.nav .list{
     list-style-type: none;
+    display: flex;
+  justify-content: space-between;
+    
+    
+}
+
+.nav .list li a{
+    color: white;
+     
 }
