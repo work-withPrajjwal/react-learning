@@ -19,6 +19,7 @@ export default function App() {
         <Route path="/app" element={<AppLayout />} >
         <Route path="cities" element={<CityList/>}/>
         <Route path="countries" element={<CountryList/>}/>
+        <Route path="form" element={<p>Form to add new Country</p>}/>
         </Route>
         <Route path ="/login" element={<Login/>}/>
       </Routes>
