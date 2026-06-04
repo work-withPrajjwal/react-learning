@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Product from "./pages/Product";
@@ -7,34 +8,34 @@ import AppLayout from "./pages/AppLayout";
 import Login from "./pages/Login"
 import CityList from "./components/CityList";
 import CountryList from "./components/CountryList";
-import { useEffect, useState } from "react";
 
 
 
 const BASE_URL = "http://localhost:8000";
 
-const [cities, setCities] = useState([]);
-const[isLoading, setISLoading]= useState(false);
 
-useEffect(function(){
-  async function fetchCities(){
-   try{ 
-    setISLoading(true);
-    const res = await fetch(`${BASE_URL}/cities`);
-    const data = await res.json();
-    setCities(data);
-  }
 
-  catch(err){
-    console.log('Eror fetching cities', err)
-  }finally{
-    setISLoading(false);
-  }
-}
-fetchCities()
-},[]);
+
 
 export default function App() {
+  const [cities, setCities] = useState([]);
+  const [isLoading, setISLoading] = useState(false);
+
+  useEffect(function () {
+    async function fetchCities() {
+      try {
+        setISLoading(true);
+        const res = await fetch(`${BASE_URL}/cities`);
+        const data = await res.json();
+        setCities(data);
+      } catch (err) {
+        console.log("Eror fetching cities", err);
+      } finally {
+        setISLoading(false);
+      }
+    }
+    fetchCities();
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
