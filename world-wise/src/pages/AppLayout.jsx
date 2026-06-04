@@ -1,6 +1,9 @@
+import styles from './AppLayout.module.css'
 
 export default function AppLayout() {
   return (
-    <div>DIV</div>
+    <div className={styles.app}>
+    
+    </div>
   )
 }
