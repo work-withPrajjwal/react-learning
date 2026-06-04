@@ -17,6 +17,7 @@ export default function App() {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="*" element={<PageNotFound />} />
         <Route path="/app" element={<AppLayout />} >
+        <Route index element={<CityList/>}/>
         <Route path="cities" element={<CityList/>}/>
         <Route path="countries" element={<CountryList/>}/>
         <Route path="form" element={<p>Form to add new Country</p>}/>
