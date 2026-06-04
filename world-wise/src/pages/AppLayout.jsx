@@ -1,5 +1,6 @@
+
 export default function AppLayout() {
   return (
-    <div>AppLayout</div>
+    <div>DIV</div>
   )
 }
