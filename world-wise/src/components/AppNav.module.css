@@ -1,0 +1,11 @@
+
+.nav .list {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+   background-color: rgb(51, 153, 71);
+}
+
+.nav .list a{
+    color: white;
+}
