@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import styles from "./PageNav.module.css"
 
 export default function PageNav() {
   return (
+    <nav className={styles.nav}>
     <ul>
         <li>
             <Link to="/">Home</Link>
@@ -15,5 +17,6 @@ export default function PageNav() {
             <Link to="/product">Procuct</Link>
             </li>
     </ul>
+    </nav>
   )
 }
