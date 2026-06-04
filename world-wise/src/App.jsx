@@ -42,13 +42,19 @@ export default function App() {
         <Route path="/product" element={<Product />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="*" element={<PageNotFound />} />
-        <Route path="/app" element={<AppLayout />} >
-        <Route index element={<CityList/>}/>
-        <Route path="cities" element={<CityList/>}/>
-        <Route path="countries" element={<CountryList/>}/>
-        <Route path="form" element={<p>Form to add new Country</p>}/>
+        <Route path="/app" element={<AppLayout />}>
+          <Route
+            index
+            element={<CityList cities={cities} isLoading={isLoading} />}
+          />
+          <Route
+            path="cities"
+            element={<CityList cities={cities} isLoading={isLoading} />}
+          />
+          <Route path="countries" element={<CountryList />} />
+          <Route path="form" element={<p>Form to add new Country</p>} />
         </Route>
-        <Route path ="/login" element={<Login/>}/>
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
