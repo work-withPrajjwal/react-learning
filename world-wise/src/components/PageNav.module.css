@@ -1,20 +1,15 @@
-.nav{
-    display: flex;
-    justify-content: space-between;
-    background-color: rebeccapurple;
-   
-}
-
-
-.nav .list{
-    list-style-type: none;
-    display: flex;
+.nav {
+  display: flex;
   justify-content: space-between;
-    
-    
+  background-color: rebeccapurple;
 }
 
-.nav .list li a{
-    color: white;
-     
+.nav .list {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav .list li a {
+  color: white;
 }
