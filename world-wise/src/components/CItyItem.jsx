@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
+import styles from "./CityItem.module.css"
 export default function CItyItem({city}) {
+const {cityName, emo, date}= city;
   return (
-    <div>CItyItem</div>
+    <li>CItyItem</li>
   )
 }
