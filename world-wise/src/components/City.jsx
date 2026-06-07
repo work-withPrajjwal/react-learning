@@ -10,7 +10,7 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function City() {
-  const x = useParams();
+  const x = useParams([]);
   console.log(x);
   // TEMP DATA
   const currentCity = {
@@ -23,7 +23,7 @@ function City() {
   const { cityName, emoji, date, notes } = currentCity;
 
   return (
-    <h1>Hello There</h1>
+    <h1>{x.id} Hello There</h1>
     // <div className={styles.city}>
     //   <div className={styles.row}>
     //     <h6>City name</h6>
