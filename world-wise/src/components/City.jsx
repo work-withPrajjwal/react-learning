@@ -20,10 +20,10 @@ function City() {
     notes: "My favorite city so far!",
   };
 
-  const { cityName, emoji, date, notes } = currentCity;
+  const { cityName, emoji, date, notes} = currentCity;
 
   return (
-    <h1>{x.id} Hello There</h1>
+    <h1> Hello There {x.id}</h1>
     // <div className={styles.city}>
     //   <div className={styles.row}>
     //     <h6>City name</h6>
