@@ -11,6 +11,8 @@ export default function Map() {
       <h1>Map</h1>
       <h1>{lat}</h1>
       <h1>{lng}</h1>
+
+      <button onClick={()=>setSearchParams({lat:100, lng:190 })}>Change Position</button>
     </div>
   )
 }

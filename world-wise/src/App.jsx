@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Form, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Product from "./pages/Product";
 import Pricing from "./pages/Pricing";
@@ -54,7 +54,7 @@ export default function App() {
             element={<CityList cities={cities} isLoading={isLoading} />}
           />
           <Route path="countries" element={<CountryList cities={cities} isLoading={isLoading}/>} />
-          <Route path="form" element={<p>Form to add new Country</p>} />
+          <Route path="/form" element={<Form/>} />
         </Route>
         <Route path="/login" element={<Login />} />
       </Routes>
