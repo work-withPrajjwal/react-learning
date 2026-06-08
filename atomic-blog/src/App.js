@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 
 function createRandomPost() {
@@ -7,7 +7,9 @@ function createRandomPost() {
     body: faker.hacker.phrase(),
   };
 }
-console.log(createRandomPost());
+
+
+const postContext = createContext();
 
 function App() {
 
