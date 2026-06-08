@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 
 function createRandomPost() {
@@ -63,12 +63,7 @@ function App() {
         {isFakeDark ? "☀️" : "🌙"}
       </button>
 
-      <Header
-        posts={searchedPosts}
-        onClearPosts={handleClearPosts}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        />
+      <Header/>
       <Main posts={searchedPosts} onAddPost={handleAddPost} />
       <Archive onAddPost={handleAddPost} />
       <Footer />
@@ -77,25 +72,24 @@ function App() {
   );
 }
 
-function Header({ posts, onClearPosts, searchQuery, setSearchQuery }) {
+function Header() {
+  const {onClearPosts} = useContext(PostContext);
   return (
     <header>
       <h1>
         <span>⚛️</span>The Atomic Blog
       </h1>
       <div>
-        <Results posts={posts} />
-        <SearchPosts
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-        />
+        <Results/>
+        <SearchPosts/>
         <button onClick={onClearPosts}>Clear posts</button>
       </div>
     </header>
   );
 }
 
-function SearchPosts({ searchQuery, setSearchQuery }) {
+function SearchPosts() {
+  const {searchQuery, setSearchQuery} = useContext(PostContext);
   return (
     <input
       value={searchQuery}
@@ -105,7 +99,8 @@ function SearchPosts({ searchQuery, setSearchQuery }) {
   );
 }
 
-function Results({ posts }) {
+function Results() {
+  const {posts} = useContext(PostContext)
   return <p>🚀 {posts.length} atomic posts found</p>;
 }
 
@@ -126,7 +121,9 @@ function Posts({ posts }) {
   );
 }
 
-function FormAddPost({ onAddPost }) {
+function FormAddPost() {
+  const {onAddPost}
+
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
