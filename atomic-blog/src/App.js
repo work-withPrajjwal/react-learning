@@ -8,8 +8,8 @@ function createRandomPost() {
   };
 }
 
-
-const postContext = createContext();
+// 1. creating a context
+const PostContext = createContext();
 
 function App() {
 
@@ -46,11 +46,20 @@ function App() {
   );
 
   return (
+    <PostContext.Provider value={{
+      posts:searchedPosts,
+      onClearPosts: handleClearPosts,
+      searchQuery: searchQuery,
+      setSearchQuery,
+      onAddPost: handleAddPost,
+
+}}>
+
     <section>
       <button
         onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
         className="btn-fake-dark-mode"
-      >
+        >
         {isFakeDark ? "☀️" : "🌙"}
       </button>
 
@@ -59,11 +68,12 @@ function App() {
         onClearPosts={handleClearPosts}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-      />
+        />
       <Main posts={searchedPosts} onAddPost={handleAddPost} />
       <Archive onAddPost={handleAddPost} />
       <Footer />
     </section>
+  </PostContext.Provider>
   );
 }
 
