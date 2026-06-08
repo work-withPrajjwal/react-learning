@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
-import {PostProvider, PostContext} from "./PostContext";
+import {PostProvider, PostContext, usePosts} from "./PostContext";
 
 
 function createRandomPost() {
@@ -37,11 +37,11 @@ function App() {
       </button>
 
       <Header/>
-      <Main posts={searchedPosts} onAddPost={handleAddPost} />
-      <Archive onAddPost={handleAddPost} />
+      <Main  />
+      <Archive  />
       <Footer />
     </section>
-          </PostProvider>
+    </PostProvider>
   
   );
 }

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { faker } from "@faker-js/faker";
 
 
@@ -14,7 +14,7 @@ const PostContext = createContext();
 
 
 
-function PostProvider() {
+function PostProvider({children}) {
       const [posts, setPosts] = useState(() =>
         Array.from({ length: 30 }, () => createRandomPost())
       );
@@ -38,8 +38,7 @@ function PostProvider() {
         setPosts([]);
       }
   return (
-    <div>
-      {" "}
+   
       <PostContext.Provider
         value={{
           posts: searchedPosts,
@@ -48,9 +47,16 @@ function PostProvider() {
           setSearchQuery,
           onAddPost: handleAddPost,
         }}
-      ></PostContext.Provider>
-    </div>
+      >
+        {children}
+      </PostContext.Provider>
   );
 }
 
-export  {PostProvider, PostContext};
+
+function usePosts(){
+    const context = useContext(PostContext);
+    return context;
+}
+
+export  {PostProvider, useContext};
