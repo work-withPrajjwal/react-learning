@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
+import { use } from "react";
 
 function createRandomPost() {
   return {
@@ -113,7 +114,8 @@ function Main({ posts, onAddPost }) {
   );
 }
 
-function Posts({ posts }) {
+function Posts() {
+  const {posts} = useContext(PostContext)
   return (
     <section>
       <List posts={posts} />
