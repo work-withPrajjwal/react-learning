@@ -50,7 +50,7 @@ function App() {
     <PostContext.Provider value={{
       posts:searchedPosts,
       onClearPosts: handleClearPosts,
-      searchQuery: searchQuery,
+      searchQuery,
       setSearchQuery,
       onAddPost: handleAddPost,
 
