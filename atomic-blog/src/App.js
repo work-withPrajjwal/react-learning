@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
+import {PostProvider, PostContext} from "./PostContext";
 
 
 function createRandomPost() {
@@ -24,14 +25,8 @@ function App() {
   );
 
   return (
-    <PostContext.Provider value={{
-      posts:searchedPosts,
-      onClearPosts: handleClearPosts,
-      searchQuery,
-      setSearchQuery,
-      onAddPost: handleAddPost,
-
-}}>
+ 
+<PostProvider>
 
     <section>
       <button
@@ -46,7 +41,8 @@ function App() {
       <Archive onAddPost={handleAddPost} />
       <Footer />
     </section>
-  </PostContext.Provider>
+          </PostProvider>
+  
   );
 }
 
