@@ -26,7 +26,6 @@ function App() {
 
   return (
  
-<PostProvider>
 
     <section>
       <button
@@ -36,12 +35,13 @@ function App() {
         {isFakeDark ? "☀️" : "🌙"}
       </button>
 
+          <PostProvider>
       <Header/>
       <Main  />
       <Archive  />
       <Footer />
-    </section>
     </PostProvider>
+    </section>
   
   );
 }
