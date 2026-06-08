@@ -122,7 +122,7 @@ function Posts({ posts }) {
 }
 
 function FormAddPost() {
-  const {onAddPost}
+  const {onAddPost} = useContext(PostContext)
 
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
