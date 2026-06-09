@@ -42,7 +42,13 @@ const CitiesContext = createContext()
       }
     }
   return (
-   <CitiesContext.Provider value={{cities, isLoading}}>
+   <CitiesContext.Provider 
+   value={{
+    cities,
+     isLoading,
+    currentCity,
+     getCity
+   }}>
 
     {children}
    </CitiesContext.Provider>
