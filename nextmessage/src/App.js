@@ -4,14 +4,25 @@ import { useState } from "react";
 const data=[
   {
     message: "This is the best product I've ever used!",
-    name:"Jane Doe",
+    name:"Rijan Tiwari",
 
   },
   {
     message: "I highly recommend this product to everyone!",
-    name:"Jane Doe",
+    name:"Prajjwal Budha",
 
   },
+  {
+    message: "I am not satisfied with the quality of this product.",
+    name:"Rohit Bist",
+
+  },
+  {
+    message: "Ts was not worth the price I paid for it.",
+    name:"Lhosang Lama",
+
+  },
+
 ]
 
 function App() {
@@ -27,15 +38,20 @@ function App() {
     if(message<data.length) setMessage((currMessage)=>currMessage+1)
   }
   return (
+    <div>
+       <button onClick={()=>setIsOpen(!isOpen)}>&times;</button>
+{isOpen && (
     <div className="App">
+     
       <div className="text">
         <p>{data[message - 1].message}</p>
-        <p>-{data[message -1].name}</p>
+        <p className="bold">-{data[message -1].name}</p>
       </div>
       <div className="buttons">
       <button onClick={handlePreviousMessage} >Prev</button>
       <button onClick={handleNextMessage}>Next</button>
       </div>
+    </div>)}
     </div>
   );
 }

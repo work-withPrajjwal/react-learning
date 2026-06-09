@@ -20,7 +20,7 @@ code {
   margin-top: 30vh;
   border: 2px solid rgb(126, 170, 170);
   background-color: rgb(222, 234, 234);
-  max-width: 50vw;
+  max-width: 60vw;
   height: auto;
   border-radius: 0.9rem;
   margin-left: 30vw;
@@ -42,4 +42,10 @@ button{
   border-radius: 0.2rem;
   cursor: pointer;
   color: white;
+}
+p{
+  font-style: italic;
+}
+p.bold{
+  font-weight: bold;
 }
