@@ -27,7 +27,10 @@ const CitiesContext = createContext()
       fetchCities();
     }, []);
   return (
-    <div>CitiesContext</div>
+   <CitiesContext.Provider value={{cities, isLoading}}>
+
+    {children}
+   </CitiesContext.Provider>
   )
 }
 
