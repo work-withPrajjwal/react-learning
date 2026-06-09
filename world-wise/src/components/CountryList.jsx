@@ -5,7 +5,7 @@ import Message from "./Message";
 import { useCities } from "../contexts/CitiesContext";
 
 export default function CountryList() {
-    const { isLoading, cities } = useCities;
+    const { isLoading, cities } = useCities();
   const countries = cities.reduce((arr, city) => {
     if (!arr.map((el) => el.country).includes(city.country))
       return [...arr, { country: city.country, emoji: city.emoji }];
