@@ -13,17 +13,16 @@ import { useEffect, useState } from "react";
 import { latLng } from "leaflet";
 import { useCities } from "../contexts/CitiesContext";
 import { useGeoLocation } from "../hooks/useGeoLocation";
+import { useUrlPosition } from "../hooks/useUrlPosition";
 
 export default function Map() {
   const { cities } = useCities();
 
   const{isLoading: isLoadingPosition, position:geoLocationPosition,  getPosition} =useGeoLocation();
-  const [searchParams, setSearchParams] = useSearchParams();
   const [mapPosition, setMapPosition] = useState([27.7172, 85.324]);
+  const[mapLat, mapLng] = useUrlPosition()
 
-  const mapLat = searchParams.get("lat");
-  const mapLng = searchParams.get("lng");
-  console.log(mapLat, mapLng);
+
   useEffect(
     function () {
       if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
@@ -39,14 +38,12 @@ export default function Map() {
     <div className={styles.mapContainer}>
       {!geoLocationPosition && (
         <Button type="position" onClick={getPosition}>
-          {" "}
           {isLoadingPosition ? "Loading......" : "useYourLoaction"}
         </Button>
       )}
       <MapContainer
         className={styles.map}
         center={mapPosition}
-        // center={mapPosition}
         zoom={6}
         scrollWheelZoom={true}
       >
