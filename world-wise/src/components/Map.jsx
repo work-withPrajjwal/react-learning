@@ -8,15 +8,17 @@ export default function Map() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [mapPosition, setMapPosition] = useState([27.7172, 85.324]);
 
-  const mapLat = Number(searchParams.get("lat"));
-  const mapLng = Number(searchParams.get("lng"));
-
   
-useEffect(function(){
+  const mapLat = searchParams.get("lat");
+  const mapLng =searchParams.get("lng");
+ console.log(mapLat, mapLng)
+  useEffect(
+    function () {
+      if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
+    },
+    [mapLat, mapLng],
+  );
 
- if(mapLat && mapLng) setMapPosition({mapLat, mapLng})
-}, [mapLat, mapLng])  
-  
   return (
     <div className={styles.mapContainer}>
       <MapContainer
@@ -35,12 +37,15 @@ useEffect(function(){
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
         </Marker>
+        <ChangeCenter position={mapPosition} />
       </MapContainer>
     </div>
   );
 }
 
-function changeCenter(position){
+function ChangeCenter({ position }) {
   const map = useMap();
-  map.setView
+  map.setView(position);
+
+  return null;
 }

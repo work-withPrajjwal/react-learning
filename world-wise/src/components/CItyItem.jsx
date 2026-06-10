@@ -11,18 +11,21 @@ const formatDate = (date) =>
     weekday: "long",
   }).format(new Date(date));
 
-export default function CItyItem({city}) {
-const {cityName, emoji, date, id, position}= city;
-const {currentCity}= useCities();
+export default function CItyItem({ city }) {
+  const { cityName, emoji, date, id, position } = city;
+  const { currentCity } = useCities();
   return (
     <li>
-      <Link className={`${styles.cityItem} ${id ===currentCity.id ? styles["cityItem--active"]:""}`} to={`${id}?lat=${position.lat}&lng=${position.lng}}`}>
-      <span className={styles.emoji}>{emoji}</span>
-      <h3 className={styles.name}>{cityName}</h3>
-      <time className={styles.date}>({formatDate(date)})
-        <button className={styles.deleteBtn}>x</button>
-      </time>
+      <Link
+        className={`${styles.cityItem} ${id === currentCity.id ? styles["cityItem--active"] : ""}`}
+        to={`${id}?lat=${position.lat}&lng=${position.lng}`}
+      >
+        <span className={styles.emoji}>{emoji}</span>
+        <h3 className={styles.name}>{cityName}</h3>
+        <time className={styles.date}>
+          ({formatDate(date)})<button className={styles.deleteBtn}>x</button>
+        </time>
       </Link>
-      </li>
-  )
+    </li>
+  );
 }
