@@ -65,7 +65,8 @@ const CitiesContext = createContext()
     cities,
      isLoading,
     currentCity,
-     getCity
+     getCity,
+     createCity,
    }}>
 
     {children}
