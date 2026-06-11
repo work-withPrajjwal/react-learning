@@ -20,6 +20,7 @@ export function convertToEmoji(countryCode) {
 function Form() {
   const [lat, lng] = useUrlPosition();
   const [cityName, setCityName] = useState("");
+  const [country, setCountry] = useState("");
 
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
@@ -32,7 +33,8 @@ function Form() {
   const res = await fetch(`${BASE_URL}?latitude=${lat}&longitude=${lng}`,);
   const data = await res.json();
   console.log(data)
-  setCityName()
+  setCityName(data.city);
+  setCountry(data.countryName)
       }
 
       catch(err){
