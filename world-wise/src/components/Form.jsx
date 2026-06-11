@@ -25,6 +25,7 @@ function Form() {
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
   const [emoji, setEmoji] = useState("");
+  const [geoCodingError, setGeoCodingError] = useState('')
 
   useEffect(function () {
 
@@ -34,13 +35,14 @@ function Form() {
   const res = await fetch(`${BASE_URL}?latitude=${lat}&longitude=${lng}`,);
   const data = await res.json();
   console.log(data)
-  setCityName(data.city);
+  if(!data.city && !data.locality) throw new Error("That dosen't seem to be a CIty, Click somewhere else")
+  setCityName(data.city || data.locality || " ");
   setCountry(data.countryName)
   setEmoji((convertToEmoji(data.countryCode)))
       }
 
       catch(err){
-        console.error(err.message)
+        setGeoCodingError(err.message)
 
       }
 
