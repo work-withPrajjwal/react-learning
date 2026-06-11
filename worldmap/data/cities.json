@@ -1,42 +1,6 @@
 {
   "cities": [
     {
-      "cityName": "La Champenoise",
-      "country": "France",
-      "emoji": "🇫🇷",
-      "date": "2026-06-11T03:58:24.955Z",
-      "notes": "Had fun",
-      "position": {
-        "lat": "46.94276208682137",
-        "lng": "1.8127441406250002"
-      },
-      "id": 98443198
-    },
-    {
-      "cityName": "Borchen",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2026-06-11T03:58:57.842Z",
-      "notes": "",
-      "position": {
-        "lat": "51.67255514839676",
-        "lng": "8.745117187500002"
-      },
-      "id": 98443199
-    },
-    {
-      "cityName": "Villanueva de la Jara",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2026-06-11T04:00:44.187Z",
-      "notes": "",
-      "position": {
-        "lat": "39.402244340292775",
-        "lng": "-1.9995117187500002"
-      },
-      "id": 98443200
-    },
-    {
       "cityName": "Bustillo del Paramo de Carrion",
       "country": "Spain",
       "emoji": "🇪🇸",
@@ -83,6 +47,30 @@
         "lng": "-4.94384765625"
       },
       "id": 98443204
+    },
+    {
+      "cityName": "Balearic Sea",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2026-06-11T08:11:21.402Z",
+      "notes": "",
+      "position": {
+        "lat": "39.6733703917656",
+        "lng": "-0.13183593750000003"
+      },
+      "id": 98443205
+    },
+    {
+      "cityName": "La Vall de Laguar",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2026-06-11T08:17:59.600Z",
+      "notes": "",
+      "position": {
+        "lat": "38.788345355085625",
+        "lng": "-0.13183593750000003"
+      },
+      "id": 98443206
     }
   ]
 }
