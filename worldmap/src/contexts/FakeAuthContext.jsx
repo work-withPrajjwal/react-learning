@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 
 const FAKE_USER = {
@@ -12,7 +12,16 @@ const FAKE_USER = {
 const AuthContext = createContext();
 
 
-export function AuthProvider({children}) {
+ function AuthProvider({children}) {
+   const [{ user, isAuthenticated }, dispatch] = useReducer(
+     reducer,
+     initialState,
+   );
+
+   function login (email, password){
+  if(email === FAKE_USER.email && password === FAKE_USER.password)
+    dispatch({type: "login", payload: FAKE_USER});
+}
   return (
   <AuthContext.Provider>
     {children}
@@ -25,6 +34,8 @@ const initialState={
   user:null,
   isAuthenticated: false,
 }
+
+
 
 function reducer(state, action){
   switch (action.type) {
@@ -42,10 +53,6 @@ function reducer(state, action){
 
 
 function useAuth(){
-
-
-  const[{user, isAuthenticated}, dispatch] = useReducer(reducer, initialState)
-
   const context = useContext(AuthContext);
   if(context === undefined) 
     throw new Error("AuthContect was outside the Auth Provider")
