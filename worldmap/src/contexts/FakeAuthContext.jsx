@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useReducer } from "react";
 
 
@@ -64,7 +65,9 @@ function reducer(state, action){
 function useAuth(){
   const context = useContext(AuthContext);
   if(context === undefined) 
-    throw new Error("AuthContect was outside the Auth Provider")
+    throw new Error("AuthContect was outside the Auth Provider");
+
+  return context;
 }
 
 export {AuthProvider, useAuth};
