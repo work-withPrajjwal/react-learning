@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useReducer } from "react";
 
 
 
@@ -14,10 +14,34 @@ export function AuthProvider({children}) {
 }
 
 
+const initialState={
+  user:null,
+  isAuthenticated: false,
+}
+
+function reducer(state, action){
+  switch (action.type) {
+    case "login":
+      return { ...state, user: action.payload, isAuthenticated: true };
+
+    case "logout":
+      return { ...state, user: null, isAuthenticated: false };
+      
+      default: throw new Error("unknown Action");
+  }
+  
+
+}
+
+
 function useAuth(){
+
+
+  const[{user, isAuthenticated}, dispatch] = useReducer(reducer, initialState)
+
   const context = useContext(AuthContext);
   if(context === undefined) 
     throw new Error("AuthContect was outside the Auth Provider")
 }
 
-export {AuthProvider}
+export {AuthProvider, useAuth};
