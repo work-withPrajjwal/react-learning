@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import styles from "./CityItem.module.css";
 import { useCities } from "../contexts/CitiesContext";
@@ -11,7 +10,7 @@ const formatDate = (date) =>
     weekday: "long",
   }).format(new Date(date));
 
-export default function CItyItem({ city }) {
+export default function CityItem({ city }) {
   const { cityName, emoji, date, id, position } = city;
   const { currentCity } = useCities();
   return (
@@ -22,9 +21,8 @@ export default function CItyItem({ city }) {
       >
         <span className={styles.emoji}>{emoji}</span>
         <h3 className={styles.name}>{cityName}</h3>
-        <time className={styles.date}>
-          ({formatDate(date)})<button className={styles.deleteBtn}>x</button>
-        </time>
+        <time className={styles.date}>({formatDate(date)})</time>
+        <button className={styles.deleteBtn}>x</button>
       </Link>
     </li>
   );

@@ -1,6 +1,7 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
-import Button from "./Button"
+import { useNavigate } from "react-router-dom";
+import Button from "./Button";
 import styles from "./Map.module.css";
+
 import {
   MapContainer,
   Marker,
@@ -10,18 +11,18 @@ import {
   useMapEvents,
 } from "react-leaflet";
 import { useEffect, useState } from "react";
-import { latLng } from "leaflet";
 import { useCities } from "../contexts/CitiesContext";
-import { useGeoLocation } from "../hooks/useGeoLocation";
+import { useGeolocation } from "../hooks/useGeoLocation";
 import { useUrlPosition } from "../hooks/useUrlPosition";
-
 export default function Map() {
   const { cities } = useCities();
-
-  const{isLoading: isLoadingPosition, position:geoLocationPosition,  getPosition} =useGeoLocation();
-  const [mapPosition, setMapPosition] = useState([27.7172, 85.324]);
-  const[mapLat, mapLng] = useUrlPosition()
-
+  const {
+    isLoading: isLoadingPosition,
+    position: geoLocationPosition,
+    getPosition,
+  } = useGeolocation();
+  const [mapPosition, setMapPosition] = useState([40, 0]);
+  const [mapLat, mapLng] = useUrlPosition();
 
   useEffect(
     function () {
@@ -29,23 +30,26 @@ export default function Map() {
     },
     [mapLat, mapLng],
   );
-
-  useEffect(function(){
-    if(geoLocationPosition) setMapPosition([geoLocationPosition.lat, geoLocationPosition.lng])
-  }, [geoLocationPosition])
+  useEffect(
+    function () {
+      if (geoLocationPosition)
+        setMapPosition([geoLocationPosition.lat, geoLocationPosition.lng]);
+    },
+    [geoLocationPosition],
+  );
 
   return (
     <div className={styles.mapContainer}>
       {!geoLocationPosition && (
         <Button type="position" onClick={getPosition}>
-          {isLoadingPosition ? "Loading......" : "useYourLoaction"}
+          {isLoadingPosition ? "Loading....." : "Use Your Location"}
         </Button>
       )}
       <MapContainer
-        className={styles.map}
         center={mapPosition}
         zoom={6}
         scrollWheelZoom={true}
+        className={styles.map}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.fr/hot/copyright">OpenStreetMap</a> contributors'
@@ -83,4 +87,5 @@ function DetectClick() {
       navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
     },
   });
+  return null;
 }
