@@ -41,7 +41,7 @@ const getCity = useCallback(
     } finally {
       setIsLoading(false);
     }
-  }, []
+  }, [currentCity.id]
 );
  
   async function createCity(newCity) {
