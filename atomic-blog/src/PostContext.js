@@ -40,12 +40,19 @@ function PostProvider({children}) {
 
       const value = useMemo(()=>
       {
+        return{
+          posts: searchedPosts,
+          onClearPosts: handleClearPosts,
+          searchQuery: handleAddPost,
+          searchQuery,
+          setSearchQuery
+        };
         
-      })
+      }, [searchQuery, searchedPosts])
   return (
    
       <PostContext.Provider
-        value={}
+        value={value}
       >
         {children}
       </PostContext.Provider>
