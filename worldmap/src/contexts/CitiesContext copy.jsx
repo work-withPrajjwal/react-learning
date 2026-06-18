@@ -27,7 +27,10 @@ function CitiesProvider({ children }) {
   }, []);
 
 const getCity = useCallback(
+ 
    async function getCity(id) {
+
+     if(Number(id) === currentCity.id) return;
     try {
       setIsLoading(true);
       const res = await fetch(`${BASE_URL}/cities/${id}`);
