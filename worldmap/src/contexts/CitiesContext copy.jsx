@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
 
 const BASE_URL = "http://localhost:8000";
 
@@ -26,7 +26,8 @@ function CitiesProvider({ children }) {
     fetchCities();
   }, []);
 
-  async function getCity(id) {
+const getCity = useCallback(
+   async function getCity(id) {
     try {
       setIsLoading(true);
       const res = await fetch(`${BASE_URL}/cities/${id}`);
@@ -37,7 +38,9 @@ function CitiesProvider({ children }) {
     } finally {
       setIsLoading(false);
     }
-  }
+  }, []
+);
+ 
   async function createCity(newCity) {
     try {
       setIsLoading(true);
