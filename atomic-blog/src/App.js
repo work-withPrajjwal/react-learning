@@ -73,14 +73,14 @@ function Results() {
   return <p>🚀 {posts.length} atomic posts found</p>;
 }
 
-function Main({ posts, onAddPost }) {
+const Main = memo (function Main({ posts, onAddPost }) {
   return (
     <main>
       <FormAddPost onAddPost={onAddPost} />
       <Posts posts={posts} />
     </main>
   );
-}
+});
 
 function Posts() {
   const { posts } = usePosts();
