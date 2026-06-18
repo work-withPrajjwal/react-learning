@@ -1,7 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./contexts/FakeAuthContext";
 import { CitiesProvider } from "./contexts/CitiesContext";
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 
 // import HomePage from "./pages/HomePage";
 // import Product from "./pages/Product";
@@ -16,6 +16,7 @@ import CountryList from "./components/CountryList";
 import City from "./components/City";
 import Form from "./components/Form";
 import ProtectedRoute from "./pages/ProtectedRoute";
+import SpinnerFullPage from "./components/SpinnerFullPage"
 
 
 // dist/index.html                   0.45 kB │ gzip:   0.29 kB
@@ -36,6 +37,7 @@ export default function App() {
 
     <CitiesProvider>
       <BrowserRouter>
+      <Suspense fallback={<SpinnerFullPage/>}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="product" element={<Product />} />
@@ -55,6 +57,7 @@ export default function App() {
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>
+              </Suspense>
       </BrowserRouter>
     </CitiesProvider>
     </AuthProvider>
