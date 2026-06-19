@@ -11,4 +11,4 @@ function ToggleSounds({ allowSound, setAllowSound }) {
   );
 }
 
-export default memo( ToggleSounds);
+export default memo(ToggleSounds);
