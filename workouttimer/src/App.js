@@ -9,8 +9,9 @@ function App() {
   // Will be be AM or PM
   const partOfDay = time.slice(-2);
 
-  const workouts = useMemo(()=>
-    [
+  const workouts = useMemo(()=>{
+
+    return[
       {
         name: "Full-body workout",
         numExercises: partOfDay === "AM" ? 9 : 8,
@@ -31,7 +32,9 @@ function App() {
         name: "Core only",
         numExercises: partOfDay === "AM" ? 5 : 4,
       },
-    ],[partOfDay] )
+    ];
+  },[partOfDay]);
+  
 
   function formatTime(date) {
     return new Intl.DateTimeFormat("en", {
