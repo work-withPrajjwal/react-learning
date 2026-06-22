@@ -16,7 +16,7 @@ const initialStateCustomer = {
 }
 
 
-function accountReducer(state= initialState, action){
+function accountReducer(state= initialStateAccount, action){
 switch(action.type){
     case "account/deposit":
         return {...state, balance:state.balance + action.payload};
