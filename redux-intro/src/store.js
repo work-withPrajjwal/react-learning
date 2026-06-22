@@ -8,6 +8,11 @@ const initialState = {
 
 function reducer(state= initialState, action){
 switch(action.type){
-    
+    case "account/deposit":
+        return {...state, balance:state.balance + action.payload};
+
+
+        default:
+            return state;
 }
 }
