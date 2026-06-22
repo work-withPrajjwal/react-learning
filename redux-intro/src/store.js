@@ -30,5 +30,8 @@ case "account/withdraw":
 
 const store = createStore(reducer);
 
-store.dispatch({type: "action/deposit", payload:500 });
+store.dispatch({type: "account/deposit", payload:500 });
+console.log(store.getState());
+
+store.dispatch({type:"account/withdraw", payload: 200});
 console.log(store.getState());
