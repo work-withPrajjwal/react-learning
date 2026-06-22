@@ -16,10 +16,12 @@ case "account/withdraw":
     return {...state, balance:state.balance - action.payload};
 
     case "account/requestLoan":
-        return{...state, loan: action.payload, balance: state.balance + action.payload};
+        return{...state, loan: action.payload.amount, 
+            loanPurpose: action.payload.loanPurpose,
+            balance: state.balance + action.payload.amount};
 
         case "account/payload":
-            return{...state, loan:0, loanPurpose:"", balance: state.balance- state.loan};
+            return{...state, loan:0, loanPurpose:'', balance: state.balance- state.loan};
 
 
         default:
@@ -35,3 +37,31 @@ console.log(store.getState());
 
 store.dispatch({type:"account/withdraw", payload: 200});
 console.log(store.getState());
+
+store.dispatch({type:"account/requestLoan", payload:{
+    amount: 1000,
+   loanPurpose: "buy a phone"
+
+}});
+
+console.log(store.getState());
+
+store.dispatch({type: "account/payload"});
+console.log(store.getState());
+
+
+function deposit(amount){
+    return{type:"action/deposit", payload:amount};
+}
+function withdraw(amount){
+    return{type:"action/withdraw", payload:amount};
+}
+function requestLoan(amount){
+    return {
+      type: "account/requestLoan",
+      payload: {
+        amount: 1000,
+        loanPurpose: "buy a phone",
+      },
+    };
+}
