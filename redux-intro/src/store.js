@@ -14,7 +14,10 @@ case "account/withdraw":
     return {...state, balance:state.balance - action.payload};
 
     case "account/requestLoan":
-        return{...state, loan: action.payload,}
+        return{...state, loan: action.payload, balance: state.balance + action.payload};
+
+        case "account/payload":
+            return{...state, loan:0, loanPurpose:"", balance: state.balance- state.loan};
 
 
         default:
