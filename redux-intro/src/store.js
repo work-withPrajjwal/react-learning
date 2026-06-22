@@ -39,7 +39,17 @@ case "account/withdraw":
 
 
 
+function custiomerReducer(state= initialStateCustomer, action){
+    switch(action.type){
+    case "customer/createCustomer":
+        return{...state, fullName: action.payload.fullName, nationalID:action.payload.nationalID, createdAt:action.payload.create,};
 
+        case "customer/updateName":
+            return{...state, fullName:action.payload}
+        default:
+            return state;
+    }
+}
 
 
 
