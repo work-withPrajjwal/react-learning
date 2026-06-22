@@ -1,5 +1,5 @@
-import { type } from "@testing-library/user-event/dist/type";
-import {createStore} from "redux"
+
+import {combineReducers, createStore} from "redux"
 
 const initialStateAccount= {
     balance:0,
@@ -39,7 +39,7 @@ case "account/withdraw":
 
 
 
-function custiomerReducer(state= initialStateCustomer, action){
+function customerReducer(state= initialStateCustomer, action){
     switch(action.type){
     case "customer/createCustomer":
         return{...state, fullName: action.payload.fullName, nationalID:action.payload.nationalID, createdAt:action.payload.create,};
@@ -53,11 +53,14 @@ function custiomerReducer(state= initialStateCustomer, action){
 
 
 
+const rootReducer = combineReducers({
+    account:accountReducer,
+    customer: customerReducer,
+})
 
 
 
-
-const store = createStore(accountReducer);
+const store = createStore(rootReducer);
 
 // store.dispatch({type: "account/deposit", payload:500 });
 // console.log(store.getState());
@@ -116,7 +119,7 @@ function createCustomer(fullName, nationalId){
 
 function updateName(fullName){
     return{
-        type: 'action/updateName',
+        type: 'customer/updateName',
         payload: fullName,
     };
 }
