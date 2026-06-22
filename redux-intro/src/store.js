@@ -30,24 +30,24 @@ case "account/withdraw":
 }
 
 
-const store = createStore(reducer);
+// const store = createStore(reducer);
 
-store.dispatch({type: "account/deposit", payload:500 });
-console.log(store.getState());
+// store.dispatch({type: "account/deposit", payload:500 });
+// console.log(store.getState());
 
-store.dispatch({type:"account/withdraw", payload: 200});
-console.log(store.getState());
+// store.dispatch({type:"account/withdraw", payload: 200});
+// console.log(store.getState());
 
-store.dispatch({type:"account/requestLoan", payload:{
-    amount: 1000,
-   loanPurpose: "buy a phone"
+// store.dispatch({type:"account/requestLoan", payload:{
+//     amount: 1000,
+//    loanPurpose: "buy a phone"
 
-}});
+// }});
 
-console.log(store.getState());
+// console.log(store.getState());
 
-store.dispatch({type: "account/payload"});
-console.log(store.getState());
+// store.dispatch({type: "account/payload"});
+// console.log(store.getState());
 
 
 function deposit(amount){
@@ -64,4 +64,8 @@ function requestLoan(amount){
         loanPurpose: "buy a phone",
       },
     };
+}
+
+function payLoan(){
+    return{type: "account/payloan"};
 }
