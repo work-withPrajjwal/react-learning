@@ -1,10 +1,17 @@
 import {createStore} from "redux"
 
-const initialState = {
+const initialStateAccount= {
     balance:0,
     loan:0,
     loanPurpose: ""
 
+}
+
+
+const initialStateCustomer = {
+    fullName: "",
+    nationalID: "",
+    createdAt: ""
 }
 
 
@@ -30,7 +37,7 @@ case "account/withdraw":
 }
 
 
-// const store = createStore(reducer);
+const store = createStore(reducer);
 
 // store.dispatch({type: "account/deposit", payload:500 });
 // console.log(store.getState());
@@ -51,10 +58,10 @@ case "account/withdraw":
 
 
 function deposit(amount){
-    return{type:"action/deposit", payload:amount};
+    return{type:"account/deposit", payload:amount};
 }
 function withdraw(amount){
-    return{type:"action/withdraw", payload:amount};
+    return{type:"account/withdraw", payload:amount};
 }
 function requestLoan(amount){
     return {
@@ -69,3 +76,6 @@ function requestLoan(amount){
 function payLoan(){
     return{type: "account/payloan"};
 }
+
+store.dispatch(deposit(5000));
+console.log(store.getState())
