@@ -11,7 +11,8 @@ function AccountOperations() {
 
 
 const dispatch =  useDispatch();
-const data = useSelector((store)=> store);
+const {
+  loan: currentLoan} = useSelector((store)=> store.account);
   function handleDeposit() {
 if(!depositAmount) return;
 dispatch(deposit(depositAmount));
@@ -87,7 +88,7 @@ setDepositAmount("");
         </div>
 
         <div>
-          <span>Pay back $X</span>
+          <span>Pay back ${currentLoan}</span>
           <button onClick={handlePayLoan}>Pay loan</button>
         </div>
       </div>
