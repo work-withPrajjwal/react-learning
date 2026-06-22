@@ -104,6 +104,12 @@ function createCustomer(fullName, nationalId){
 }
 
 
+function updateName(fullName){
+    return{
+        type: 'action/updateName',
+        payload: fullName,
+    };
+}
 
 
 
