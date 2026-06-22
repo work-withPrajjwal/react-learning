@@ -1,3 +1,4 @@
+import { type } from "@testing-library/user-event/dist/type";
 import {createStore} from "redux"
 
 const initialStateAccount= {
@@ -15,7 +16,7 @@ const initialStateCustomer = {
 }
 
 
-function reducer(state= initialState, action){
+function accountReducer(state= initialState, action){
 switch(action.type){
     case "account/deposit":
         return {...state, balance:state.balance + action.payload};
@@ -37,7 +38,16 @@ case "account/withdraw":
 }
 
 
-const store = createStore(reducer);
+
+
+
+
+
+
+
+
+
+const store = createStore(accountReducer);
 
 // store.dispatch({type: "account/deposit", payload:500 });
 // console.log(store.getState());
@@ -76,6 +86,26 @@ function requestLoan(amount){
 function payLoan(){
     return{type: "account/payloan"};
 }
+
+
+
+
+
+
+function createCustomer(fullName, nationalId){
+    return{
+        type:"customer/createCustome",
+        payload: {
+            fullName,
+            nationalId,
+            createdAt: new Date().toLocaleDateString(),
+        }
+    }
+}
+
+
+
+
 
 store.dispatch(deposit(5000));
 console.log(store.getState())
