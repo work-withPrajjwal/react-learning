@@ -1,3 +1,5 @@
+import {createStore} from "redux"
+
 const initialState = {
     balance:0,
     loan:0,
@@ -24,3 +26,9 @@ case "account/withdraw":
             return state;
 }
 }
+
+
+const store = createStore(reducer);
+
+store.dispatch({type: "action/deposit", payload:500 });
+console.log(store.getState());
