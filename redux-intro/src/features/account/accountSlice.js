@@ -38,11 +38,11 @@ export function deposit(amount, currency) {
  return async function(dispatch, getState){
 const res = await fetch(`https://api.frankfurter.dev/v2/rate/${currency}/USD`);
  const data = await res.json();
- console.log(data);
+const converted = (amount * data.rate).toFixed(2);
 
-
+dispatch ({type: "account/deposit", payload: converted})
  }
-}
+};
 export function withdraw(amount) {
   return { type: "account/withdraw", payload: amount };
 }
