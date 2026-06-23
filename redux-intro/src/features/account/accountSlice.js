@@ -20,8 +20,8 @@ const accountSlice = createSlice({
     requestLoan: {
       prepare(amount, purpose){
         return{payload:{
-          amount : amount,
-          purpose: purpose,
+          amount,
+          purpose,
         },
       };
       },
