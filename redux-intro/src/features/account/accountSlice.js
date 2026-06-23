@@ -5,6 +5,7 @@ const initialStateAccount = {
   isLoading: false
 };
 
+
 export default function accountReducer(state = initialStateAccount, action) {
   switch (action.type) {
     case "account/deposit":
@@ -64,5 +65,6 @@ export function requestLoan(amount) {
 export function payLoan() {
   return { type: "account/payloan" };
 }
+
 
 

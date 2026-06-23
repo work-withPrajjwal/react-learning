@@ -3,7 +3,7 @@ import accountReducer from "./features/account/accountSlice";
 import customerReducer from "./features/customers/customerSlice";
 
 
-configureStore({reducer:{
+const store = configureStore({reducer:{
   account: accountReducer,
   customerReducer,  
 }})
