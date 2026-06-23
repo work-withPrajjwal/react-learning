@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { payLoan, withdraw } from "./accountSlice";
+
 
 const initialState = {
   balance: 0,
@@ -32,3 +32,5 @@ const accountSlice = createSlice({
   }
 });
 
+export const {deposit, withdraw, requestLoadn, payLoan} = accountSlice.actions;
+export default accountSlice.reducer;
