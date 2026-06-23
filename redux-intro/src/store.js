@@ -1,4 +1,3 @@
-
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import {thunk} from "redux-thunk";
 import accountReducer from "./features/account/accountSlice";
